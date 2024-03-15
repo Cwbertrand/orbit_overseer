@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
 import { styles } from './HomeScreenStyles';
 import { AntDesign } from '@expo/vector-icons';
 import InputText from '../../components/InputText';
 import { useFonts } from 'expo-font';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
+import { useState } from 'react';
+import { CopyIdToClipboard } from '../../components/CopyIdToClipboard/CopyIdToClipboard';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 interface HomeScreenProps {}
 
@@ -13,6 +17,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   const [fontsLoaded] = useFonts({
     'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
   });
+
   const navigation = useNavigation();
   return (
     <>
@@ -25,21 +30,22 @@ const HomeScreen = (props: HomeScreenProps) => {
           contentContainerStyle={styles.scrollViewContainer}
         >
           <View style={styles.topBtns}>
+            <CopyIdToClipboard 
+              text={uuid.v4() as string}
+              style={styles.inputStyles}
+              viewStyles={styles.viewStyles}
+              disabled
+            />
+            <View style={styles.inputRow}>
               <InputText 
-                placeholder="User's id" 
+                placeholder="User name" 
                 style={styles.inputStyles}
                 viewStyles={styles.viewStyles}
-              />
-              <View style={styles.inputRow}>
-                <InputText 
-                  placeholder="User name" 
-                  style={styles.inputStyles}
-                  viewStyles={styles.viewStyles}
-                /> 
-                <TouchableOpacity style={styles.btnEdit}>
-                  <AntDesign name="edit" size={30} color="white" />
-                </TouchableOpacity>
-              </View>
+              /> 
+              <TouchableOpacity style={styles.btnEdit}>
+                <AntDesign name="edit" size={30} color="white" />
+              </TouchableOpacity>
+            </View>
           </View>
 
 

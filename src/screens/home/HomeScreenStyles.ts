@@ -17,35 +17,35 @@ export const styles = StyleSheet.create({
     },
     inputStyles: {
         width: '100%',
-        fontSize: 9,
+        fontSize: 8,
         fontFamily: 'Outer-Space',
         color: '#fff',
     },
     viewStyles: {
         display: "flex",
         alignSelf: "center",
-        width: '70%',
+        width: '90%',
         paddingVertical: 7,
         paddingHorizontal: 15,
         borderWidth: 2,
         borderColor: 'transparent',
-        backgroundColor: 'rgba(19,39,148, 0.7)',
+        backgroundColor: 'rgba(4,13,62, 0.9)',
         flexDirection: "row",
-        marginBottom: 15,
+        marginBottom: 2,
     },
     inputRow: {
         //flexDirection: 'row',
         marginVertical: 19,
     },
     btnEdit: {
-        backgroundColor: 'rgb(4,13,62)',
+        backgroundColor: 'rgb(4,13,12)',
         padding: 7.5,
         borderEndStartRadius: 0,
         borderTopRightRadius: 5,
         borderBottomRightRadius: 5,
         position: 'absolute',
-        right: 49,
-        bottom: 15.5
+        right: 20,
+        bottom: 3
     },
 
     bottomBtns: {
