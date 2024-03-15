@@ -7,7 +7,7 @@ interface Props {
 }
 
 const ReturnButton: React.FC<Props> = ({onPress, text}) =>
-    <ButtonStyles>
+    <ButtonStyles onPress={onPress}>
         <ButtonText>{text}</ButtonText>
     </ButtonStyles>
 

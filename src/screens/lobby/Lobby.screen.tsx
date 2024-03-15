@@ -4,16 +4,16 @@ import LaunchButton from '../../components/LaunchButton/LaunchButton';
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import ListUser from '../../components/ListUser/ListUser';
 import { LobbyWrapper, Launch, NavLobby } from "./styles";
-import { useNavigate } from 'react-router-native';
+import { useNavigation } from '@react-navigation/native';
+
 
 const LobbyScreen = () => {
-    //const navigate = useNavigate();
-    
-  return (
+    const navigation = useNavigation();
+return (
     <LobbyWrapper>
         <NavLobby>
             <ReturnButton
-                //onPress={'/Home'} 
+                onPress={() => navigation.goBack()} 
                 text={'Return'}
             />
             <Text>[ID utilisateur]</Text>
@@ -28,8 +28,7 @@ const LobbyScreen = () => {
             />
         </Launch>
     </LobbyWrapper>
-  );
-};
+)};
 
 export default LobbyScreen;
 

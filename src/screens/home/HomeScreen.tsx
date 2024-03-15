@@ -4,8 +4,8 @@ import { styles } from './HomeScreenStyles';
 import { AntDesign } from '@expo/vector-icons';
 import InputText from '../../components/InputText';
 import { useFonts } from 'expo-font';
-import AwesomeButton from "react-native-really-awesome-button";
 import { ThemedButton } from 'react-native-really-awesome-button';
+import { useNavigation } from '@react-navigation/native';
 
 interface HomeScreenProps {}
 
@@ -13,6 +13,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   const [fontsLoaded] = useFonts({
     'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
   });
+  const navigation = useNavigation();
   return (
     <>
     <ImageBackground
@@ -44,7 +45,13 @@ const HomeScreen = (props: HomeScreenProps) => {
 
           <View style={styles.bottomBtns}>
             <View style={styles.createJoinBtns}>
-              <ThemedButton width={150} name="bruce" type="anchor" style={styles.opCreateJoin}>
+              <ThemedButton 
+                width={150} 
+                name="bruce" 
+                type="anchor" 
+                style={styles.opCreateJoin}
+                onPress={() => navigation.navigate('Lobby' as never)}
+              >
                 <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
               </ThemedButton>
               <ThemedButton width={150} name="rick" type="whatsapp" style={styles.opCreateJoin}>
