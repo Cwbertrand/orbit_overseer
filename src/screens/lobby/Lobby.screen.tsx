@@ -1,34 +1,33 @@
 import * as React from 'react';
-import {ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import { lobbyStyles } from "./lobby.style";
-
+import {Text} from 'react-native';
+import LaunchButton from '../../components/LaunchButton/LaunchButton';
+import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import ListUser from '../../components/ListUser/ListUser';
+import { LobbyWrapper, Launch, NavLobby } from "./styles";
+import { useNavigate } from 'react-router-native';
 
 const LobbyScreen = () => {
+    //const navigate = useNavigate();
+    
   return (
-    <ScrollView 
-        style={lobbyStyles.container}
-        contentContainerStyle={lobbyStyles.scrollView}
-    >
-        <View style={lobbyStyles.rowId}>
-            <TouchableOpacity style={lobbyStyles.returnButton}>
-                <Text style={lobbyStyles.returnButtonText}>return</Text>
-            </TouchableOpacity>
+    <LobbyWrapper>
+        <NavLobby>
+            <ReturnButton
+                //onPress={'/Home'} 
+                text={'Return'}
+            />
             <Text>[ID utilisateur]</Text>
-        </View>
+        </NavLobby>
         
-        <View style={lobbyStyles.listBloc}>
-            <Text>
-                - User ID
-                - User ID
-            </Text>
-        </View>
+        <ListUser/>
         
-        <View style={lobbyStyles.launchBlocButton}>
-            <TouchableOpacity style={lobbyStyles.launchButton}>
-                <Text style={lobbyStyles.launchButtonText}>launch</Text>
-            </TouchableOpacity>
-        </View>
-    </ScrollView>
+        <Launch>
+            <LaunchButton 
+                //onPress={} 
+                text={'Launch !'}
+            />
+        </Launch>
+    </LobbyWrapper>
   );
 };
 
