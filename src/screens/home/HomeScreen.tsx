@@ -1,18 +1,71 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { styles } from './HomeScreenStyles';
+import { AntDesign } from '@expo/vector-icons';
+import InputText from '../../components/InputText';
+import { useFonts } from 'expo-font';
+import AwesomeButton from "react-native-really-awesome-button";
+import { ThemedButton } from 'react-native-really-awesome-button';
 
 interface HomeScreenProps {}
 
 const HomeScreen = (props: HomeScreenProps) => {
+  const [fontsLoaded] = useFonts({
+    'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
+  });
   return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-    </View>
+    <>
+    <ImageBackground
+      source={require('../../../assets/img/homepage/bg1.jpg')}
+      style={styles.container}
+    >
+        <ScrollView 
+          bounces={false}
+          contentContainerStyle={styles.scrollViewContainer}
+        >
+          <View style={styles.topBtns}>
+              <InputText 
+                placeholder="User's id" 
+                style={styles.inputStyles}
+                viewStyles={styles.viewStyles}
+              />
+              <View style={styles.inputRow}>
+                <InputText 
+                  placeholder="User name" 
+                  style={styles.inputStyles}
+                  viewStyles={styles.viewStyles}
+                /> 
+                <TouchableOpacity style={styles.btnEdit}>
+                  <AntDesign name="edit" size={30} color="white" />
+                </TouchableOpacity>
+              </View>
+          </View>
+
+
+          <View style={styles.bottomBtns}>
+            <View style={styles.createJoinBtns}>
+              <ThemedButton width={150} name="bruce" type="anchor" style={styles.opCreateJoin}>
+                <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
+              </ThemedButton>
+              <ThemedButton width={150} name="rick" type="whatsapp" style={styles.opCreateJoin}>
+                <Text style={styles.buttonText}>Join</Text>
+              </ThemedButton>
+            </View>
+
+            <View>
+              <ThemedButton width={350} name="bruce" type="secondary" style={{marginBottom: 10}}>
+                <Text style={[styles.buttonText, styles.blackInput]}>History</Text>
+              </ThemedButton>
+              <ThemedButton width={350} name="bruce" type="youtube" style={styles.buttonText}>
+                <Text style={styles.buttonText}>Exit</Text>
+              </ThemedButton>
+            </View>
+          </View>
+        </ScrollView>
+    </ImageBackground>
+    </>
   );
 };
 
 export default HomeScreen;
 
-const styles = StyleSheet.create({
-  container: {}
-});
