@@ -2,8 +2,13 @@
 
 export const ListUserBloc = styled.View `
     flex: 1;
+    width: 80%;
+    height: auto;
+    margin: auto;
     padding: 10px;
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    background-color: #212121;
+    border: black 1px;
 `;
 
 export const Item = styled.View `
@@ -12,5 +17,5 @@ export const Item = styled.View `
 
 export const ItemText = styled.Text `
     font-size: 16px;
-    color: #333,
+    color: white;
 `; 

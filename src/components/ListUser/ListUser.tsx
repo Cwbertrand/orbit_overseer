@@ -12,7 +12,7 @@ const ListUser = () => {
         <ListUserBloc>
             {users.map((user, index) => (
                 <Item key={index} >
-                    <ItemText> - {user}</ItemText>
+                    <ItemText>{user}</ItemText>
                 </Item>
             ))}
         </ListUserBloc>
