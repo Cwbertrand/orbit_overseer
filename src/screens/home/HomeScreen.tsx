@@ -7,9 +7,10 @@ import { useFonts } from 'expo-font';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
 import uuid from 'react-native-uuid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { CopyIdToClipboard } from '../../components/CopyIdToClipboard/CopyIdToClipboard';
-import Clipboard from '@react-native-clipboard/clipboard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 
 interface HomeScreenProps {}
 
@@ -17,8 +18,23 @@ const HomeScreen = (props: HomeScreenProps) => {
   const [fontsLoaded] = useFonts({
     'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
   });
-
   const navigation = useNavigation();
+  const [userName, setUserName] = useState<string>('')
+
+  useEffect(() => {
+    const loadUserName = async () => {
+      const storedUserName = await getUserName();
+      if (storedUserName) setUserName(storedUserName);
+    };
+    loadUserName();
+  }, []);
+
+  const handleStoreUserName = async (newUserName: string) => {
+    await storeUserName(newUserName);
+    setUserName(newUserName);
+  };
+
+
   return (
     <>
     <ImageBackground
@@ -38,17 +54,17 @@ const HomeScreen = (props: HomeScreenProps) => {
             />
             <View style={styles.inputRow}>
               <InputText 
-                placeholder="User name" 
+                placeholder={userName}
                 style={styles.inputStyles}
                 viewStyles={styles.viewStyles}
+                onSave={handleStoreUserName}
               /> 
-              <TouchableOpacity style={styles.btnEdit}>
+              <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
                 <AntDesign name="edit" size={30} color="white" />
               </TouchableOpacity>
             </View>
           </View>
-
-
+          
           <View style={styles.bottomBtns}>
             <View style={styles.createJoinBtns}>
               <ThemedButton 

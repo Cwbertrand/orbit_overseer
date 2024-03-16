@@ -6,16 +6,22 @@ interface Props {
     placeholder?: string;
     style?: object;
     viewStyles?: object;
+    value?: any;
+    onSave?: (text: string) => void;
 }
 
-const InputText = ({placeholder, style, viewStyles}: Props) => {
+const InputText = ({placeholder, style, viewStyles, onSave}: Props) => {
     const [textValue, setTextValue] = useState<string>('');
+    const handleEndEditing = () => {
+        if (onSave != undefined) onSave(textValue);
+    };
     return (
         <View style={viewStyles}>
             <TextInput 
                 textAlign='center'
                 style={style}  
-                onChangeText={ textInput => setTextValue(textInput)}
+                onChangeText={setTextValue}
+                onEndEditing={handleEndEditing}
                 value={textValue}
                 placeholder={placeholder}
                 placeholderTextColor={`#fff`}
