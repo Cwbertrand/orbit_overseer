@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity, ImageBackground, TextInput } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
 import { styles } from './HomeScreenStyles';
 import { AntDesign } from '@expo/vector-icons';
 import InputText from '../../components/InputText';
@@ -76,16 +76,33 @@ const HomeScreen = (props: HomeScreenProps) => {
               >
                 <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
               </ThemedButton>
-              <ThemedButton width={150} name="rick" type="whatsapp" style={styles.opCreateJoin}>
+              <ThemedButton 
+                  width={150} 
+                  name="rick" 
+                  type="whatsapp" 
+                  style={styles.opCreateJoin}
+              >
                 <Text style={styles.buttonText}>Join</Text>
               </ThemedButton>
             </View>
 
             <View>
-              <ThemedButton width={350} name="bruce" type="secondary" style={{marginBottom: 10}}>
+              <ThemedButton 
+                  width={350} 
+                  name="bruce" 
+                  type="secondary" 
+                  style={{marginBottom: 10}}
+                  onPress={() => navigation.navigate('History' as never)}
+              >
                 <Text style={[styles.buttonText, styles.blackInput]}>History</Text>
               </ThemedButton>
-              <ThemedButton width={350} name="bruce" type="youtube" style={styles.buttonText}>
+              
+              <ThemedButton 
+                  width={350} 
+                  name="bruce" 
+                  type="youtube" 
+                  style={styles.buttonText}
+              >
                 <Text style={styles.buttonText}>Exit</Text>
               </ThemedButton>
             </View>
