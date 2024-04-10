@@ -28,7 +28,12 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      "expo-font"
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/outer_space2/OuterSpace.ttf"]
+        }
+      ]
     ]
   }
 }

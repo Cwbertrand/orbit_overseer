@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Text, View, ScrollView, ImageBackground } from 'react-native';
-import { styles } from './HomeScreenStyles';
+import { styles } from './styles';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
@@ -12,18 +13,27 @@ interface HomeScreenProps {}
 
 const HomeScreen = (props: HomeScreenProps) => {
   const [fontsLoaded] = useFonts({
-    'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
+    'Outer-Space': require('../../../assets/fonts/outer_space2/OuterSpace.ttf'),
   });
   const navigation = useNavigation();
   const [userName, setUserName] = useState<string>('')
 
   useEffect(() => {
-    const loadUserName = async () => {
-      const storedUserName = await getUserName();
-      if (storedUserName) setUserName(storedUserName);
-    };
-    loadUserName();
-  }, []);
+    async function prepare() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        if (fontsLoaded) {
+          await SplashScreen.hideAsync();
+        }
+      }
+    }
+
+    prepare();
+  }, [fontsLoaded]);
+
 
   const handleStoreUserName = async (newUserName: string) => {
     await storeUserName(newUserName);
