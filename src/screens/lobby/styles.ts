@@ -7,7 +7,7 @@ export const LobbyWrapper = styled.View`
 
 export const Launch = styled.View`
     flex: 1;
-    alignItems: center;
+    align-items: center;
     justify-content: flex-end;
     margin-bottom: 10%;
 `;
