@@ -7,6 +7,8 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 import EditUsername from "../../components/EditUsername/EditUsername";
+import { JoinModalContent } from '../JoinModalCotent/JoinModalContent';
+import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 
 interface HomeScreenProps {}
 
@@ -15,7 +17,8 @@ const HomeScreen = (props: HomeScreenProps) => {
     'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
   });
   const navigation = useNavigation();
-  const [userName, setUserName] = useState<string>('')
+  const [userName, setUserName] = useState<string>('');
+  const [modalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     const loadUserName = async () => {
@@ -33,60 +36,78 @@ const HomeScreen = (props: HomeScreenProps) => {
 
   return (
     <>
-    <ImageBackground
-      source={require('../../../assets/img/homepage/bg1.jpg')}
-      style={styles.container}
-    >
-        <ScrollView 
-          bounces={false}
-          contentContainerStyle={styles.scrollViewContainer}
-        >
-          <EditUsername />
-          
-          <View style={styles.bottomBtns}>
-            <View style={styles.createJoinBtns}>
-              <ThemedButton 
-                width={150} 
-                name="bruce" 
-                type="anchor" 
-                style={styles.opCreateJoin}
-                onPress={() => navigation.navigate('Lobby' as never)}
-              >
-                <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
-              </ThemedButton>
-              <ThemedButton 
+      <ImageBackground
+        source={require('../../../assets/img/homepage/bg1.jpg')}
+        style={styles.container}
+      >
+          <ScrollView 
+            bounces={false}
+            contentContainerStyle={styles.scrollViewContainer}
+          >
+            <EditUsername />
+            
+            <View style={styles.bottomBtns}>
+              <View style={styles.createJoinBtns}>
+                <ThemedButton 
                   width={150} 
-                  name="rick" 
-                  type="whatsapp" 
+                  name="bruce" 
+                  type="anchor" 
                   style={styles.opCreateJoin}
-              >
-                <Text style={styles.buttonText}>Join</Text>
-              </ThemedButton>
-            </View>
+                  onPress={() => navigation.navigate('Lobby' as never)}
+                >
+                  <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
+                </ThemedButton>
 
-            <View>
-              <ThemedButton 
-                  width={350} 
-                  name="bruce" 
-                  type="secondary" 
-                  style={{marginBottom: 10}}
-                  onPress={() => navigation.navigate('History' as never)}
-              >
-                <Text style={[styles.buttonText, styles.blackInput]}>History</Text>
-              </ThemedButton>
-              
-              <ThemedButton 
-                  width={350} 
-                  name="bruce" 
-                  type="youtube" 
-                  style={styles.buttonText}
-              >
-                <Text style={styles.buttonText}>Exit</Text>
-              </ThemedButton>
+
+
+                <ThemedButton 
+                    width={150} 
+                    name="rick" 
+                    type="whatsapp" 
+                    style={styles.opCreateJoin}
+                    onPress={() => setModalVisible(true)} 
+                >
+                  <Text style={styles.buttonText}>Join</Text>
+                </ThemedButton>
+              </View>
+
+              <View>
+                <ThemedButton 
+                    width={350} 
+                    name="bruce" 
+                    type="secondary" 
+                    style={{marginBottom: 10}}
+                    onPress={() => navigation.navigate('History' as never)}
+                >
+                  <Text style={[styles.buttonText, styles.blackInput]}>History</Text>
+                </ThemedButton>
+                
+                <ThemedButton 
+                    width={350} 
+                    name="bruce" 
+                    type="youtube" 
+                    style={styles.buttonText}
+                >
+                  <Text style={styles.buttonText}>Exit</Text>
+                </ThemedButton>
+              </View>
             </View>
-          </View>
-        </ScrollView>
-    </ImageBackground>
+          </ScrollView>
+      </ImageBackground>
+
+
+
+
+
+      {/* ReusableModal Component */}
+      <ReusableModal 
+        visible={modalVisible} 
+        transparent={true} 
+        dismiss={() => setModalVisible(false)} 
+        margin={60}
+      >
+        <JoinModalContent />
+      </ReusableModal>
     </>
   );
 };
