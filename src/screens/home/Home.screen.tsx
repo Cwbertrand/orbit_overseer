@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, ScrollView, ImageBackground } from 'react-native';
-import { styles } from './HomeScreenStyles';
+import { styles } from './styles';
 import { useFonts } from 'expo-font';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
