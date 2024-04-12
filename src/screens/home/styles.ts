@@ -28,7 +28,6 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: '#fff', 
         textAlign: 'center',
-        fontFamily: 'Outer-Space',
     },
     blackInput:{
         color: '#000',

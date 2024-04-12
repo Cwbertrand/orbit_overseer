@@ -14,6 +14,6 @@ export const Launch = styled.View`
 
 export const NavLobby = styled.View`
     flex: 0.3;
-    flex-direction: row;
     align-items: center;
+    margin-top: 10%;
 `;

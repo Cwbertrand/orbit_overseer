@@ -48,6 +48,8 @@ const HomeScreen = (props: HomeScreenProps) => {
             
             <View style={styles.bottomBtns}>
               <View style={styles.createJoinBtns}>
+                
+          {/* button for create a game */}
                 <ThemedButton 
                   width={150} 
                   name="bruce" 
@@ -55,11 +57,14 @@ const HomeScreen = (props: HomeScreenProps) => {
                   style={styles.opCreateJoin}
                   onPress={() => navigation.navigate('Lobby' as never)}
                 >
-                  <Text style={[styles.buttonText, styles.blackInput]}>Create</Text>
+                  <Text 
+                      style={[styles.buttonText, styles.blackInput]}
+                  >
+                    Create
+                  </Text>
                 </ThemedButton>
-
-
-
+                
+          {/* button for joining a game */}
                 <ThemedButton 
                     width={150} 
                     name="rick" 
@@ -67,7 +72,11 @@ const HomeScreen = (props: HomeScreenProps) => {
                     style={styles.opCreateJoin}
                     onPress={() => setModalVisible(true)} 
                 >
-                  <Text style={styles.buttonText}>Join</Text>
+                  <Text 
+                      style={styles.buttonText}
+                  >
+                    Join
+                  </Text>
                 </ThemedButton>
               </View>
 
@@ -79,7 +88,11 @@ const HomeScreen = (props: HomeScreenProps) => {
                     style={{marginBottom: 10}}
                     onPress={() => navigation.navigate('History' as never)}
                 >
-                  <Text style={[styles.buttonText, styles.blackInput]}>History</Text>
+                  <Text 
+                      style={[styles.buttonText, styles.blackInput]}
+                  >
+                    History
+                  </Text>
                 </ThemedButton>
                 
                 <ThemedButton 
@@ -88,7 +101,11 @@ const HomeScreen = (props: HomeScreenProps) => {
                     type="youtube" 
                     style={styles.buttonText}
                 >
-                  <Text style={styles.buttonText}>Exit</Text>
+                  <Text 
+                      style={styles.buttonText}
+                  >
+                    Exit
+                  </Text>
                 </ThemedButton>
               </View>
             </View>

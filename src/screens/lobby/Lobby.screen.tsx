@@ -9,14 +9,15 @@ import { useNavigation } from '@react-navigation/native';
 
 const LobbyScreen = () => {
     const navigation = useNavigation();
+    
 return (
     <LobbyWrapper>
+        <Text>[ID utilisateur]</Text>
         <NavLobby>
             <ReturnButton
                 onPress={() => navigation.goBack()} 
-                text={'Return'}
+                text={'Leave'}
             />
-            <Text>[ID utilisateur]</Text>
         </NavLobby>
         
         <ListUser/>
