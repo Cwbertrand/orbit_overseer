@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 import EditUsername from "../../components/EditUsername/EditUsername";
-import { JoinModalContent } from '../JoinModalCotent/JoinModalContent';
+import { JoinModalContent } from '../JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 
 interface HomeScreenProps {}
@@ -37,7 +37,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   return (
     <>
       <ImageBackground
-        source={require('../../../assets/img/homepage/bg1.jpg')}
+        source={require('../../../assets/img/homepage/wallpaper.png')}
         style={styles.container}
       >
           <ScrollView 
