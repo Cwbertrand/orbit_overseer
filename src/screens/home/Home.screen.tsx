@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Text, View, ScrollView, ImageBackground } from 'react-native';
 import { styles } from './styles';
-import { useFonts } from 'expo-font';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
@@ -13,13 +12,11 @@ import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 interface HomeScreenProps {}
 
 const HomeScreen = (props: HomeScreenProps) => {
-  const [fontsLoaded] = useFonts({
-    'Outer-Space': require('../../../assets/fonts/outer_space2/Outer Space.ttf'),
-  });
   const navigation = useNavigation();
   const [userName, setUserName] = useState<string>('');
   const [modalVisible, setModalVisible] = useState(false);
-
+  
+  // load username 
   useEffect(() => {
     const loadUserName = async () => {
       const storedUserName = await getUserName();
@@ -28,12 +25,12 @@ const HomeScreen = (props: HomeScreenProps) => {
     loadUserName();
   }, []);
 
+  // handle username
   const handleStoreUserName = async (newUserName: string) => {
     await storeUserName(newUserName);
     setUserName(newUserName);
   };
-
-
+  
   return (
     <>
       <ImageBackground
@@ -67,20 +64,18 @@ const HomeScreen = (props: HomeScreenProps) => {
           {/* button for joining a game */}
                 <ThemedButton 
                     width={150} 
-                    name="rick" 
-                    type="whatsapp" 
+                    backgroundColor={'#25D366'}
+                    name="bruce" 
+                    type="anchor" 
                     style={styles.opCreateJoin}
                     onPress={() => setModalVisible(true)} 
                 >
-                  <Text 
-                      style={styles.buttonText}
-                  >
-                    Join
-                  </Text>
+                  <Text>Join</Text>
                 </ThemedButton>
               </View>
 
               <View>
+                {/* button to see party history */}
                 <ThemedButton 
                     width={350} 
                     name="bruce" 
@@ -111,11 +106,7 @@ const HomeScreen = (props: HomeScreenProps) => {
             </View>
           </ScrollView>
       </ImageBackground>
-
-
-
-
-
+      
       {/* ReusableModal Component */}
       <ReusableModal 
         visible={modalVisible} 

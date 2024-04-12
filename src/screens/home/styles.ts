@@ -32,6 +32,4 @@ export const styles = StyleSheet.create({
     blackInput:{
         color: '#000',
     },
-    
-
 });
