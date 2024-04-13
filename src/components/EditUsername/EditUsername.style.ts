@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     inputStyles: {
         width: '100%',
         fontSize: 8,
-        fontFamily: 'Outer-Space',
         color: '#fff',
     },
     viewStyles: {
