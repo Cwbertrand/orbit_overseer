@@ -3,11 +3,14 @@ import { Text, View, ScrollView, ImageBackground } from 'react-native';
 import { styles } from './styles';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 import EditUsername from "../../components/EditUsername/EditUsername";
 import { JoinModalContent } from '../JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+SplashScreen.preventAutoHideAsync();
 
 interface HomeScreenProps {}
 
@@ -31,6 +34,22 @@ const HomeScreen = (props: HomeScreenProps) => {
     setUserName(newUserName);
   };
   
+  // Importe le style
+  const [fontsLoaded, fontError] = useFonts({
+    'OuterSpace': require('../../../assets/fonts/OuterSpace.ttf'),
+  });
+  
+  // charge le style
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded || fontError) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded, fontError]);
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
+  
   return (
     <>
       <ImageBackground
@@ -43,7 +62,7 @@ const HomeScreen = (props: HomeScreenProps) => {
           >
             <EditUsername />
             
-            <View style={styles.bottomBtns}>
+            <View style={styles.bottomBtns} onLayout={onLayoutRootView}>
               <View style={styles.createJoinBtns}>
                 
           {/* button for create a game */}
@@ -53,7 +72,7 @@ const HomeScreen = (props: HomeScreenProps) => {
                   type="anchor"
                   onPress={() => navigation.navigate('Lobby' as never)}
                 >
-                  <Text>Create</Text>
+                  <Text style={{ fontFamily: 'OuterSpace'}}>Create</Text>
                 </ThemedButton>
                 
           {/* button for joining a game */}
@@ -65,10 +84,10 @@ const HomeScreen = (props: HomeScreenProps) => {
                     style={styles.opCreateJoin}
                     onPress={() => setModalVisible(true)} 
                 >
-                  <Text>Join</Text>
+                  <Text style={{ fontFamily: 'OuterSpace'}}>Join</Text>
                 </ThemedButton>
               </View>
-
+              
               <View>
                 {/* button to see party history */}
                 <ThemedButton 
@@ -78,7 +97,7 @@ const HomeScreen = (props: HomeScreenProps) => {
                     style={{marginBottom: 10}}
                     onPress={() => navigation.navigate('History' as never)}
                 >
-                  <Text>History</Text>
+                  <Text style={{ fontFamily: 'OuterSpace'}}>History</Text>
                 </ThemedButton>
                 
                 <ThemedButton 
@@ -87,7 +106,7 @@ const HomeScreen = (props: HomeScreenProps) => {
                     type="anchor"
                     backgroundColor={'#cc0000'}
                 >
-                  <Text>Exit</Text>
+                  <Text style={{ fontFamily: 'OuterSpace'}}>Exit</Text>
                 </ThemedButton>
               </View>
             </View>
