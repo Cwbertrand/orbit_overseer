@@ -17,7 +17,7 @@ const ReturnButton: React.FC<Props> = ({onPress, text, buttonStyle}) =>
         onPress={onPress} 
         style={buttonStyle}
     >
-        <Text>{text}</Text>
+        <Text style={{ fontFamily: 'OuterSpace'}}>{text}</Text>
     </ThemedButton>
 
 export default ReturnButton;

@@ -34,12 +34,12 @@ const HomeScreen = (props: HomeScreenProps) => {
     setUserName(newUserName);
   };
   
-  // Importe le style
+  // Import font style
   const [fontsLoaded, fontError] = useFonts({
     'OuterSpace': require('../../../assets/fonts/OuterSpace.ttf'),
   });
   
-  // charge le style
+  // load font style
   const onLayoutRootView = useCallback(async () => {
     if (fontsLoaded || fontError) {
       await SplashScreen.hideAsync();

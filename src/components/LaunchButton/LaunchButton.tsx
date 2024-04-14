@@ -16,7 +16,7 @@ const LaunchButton: React.FC<Props> = ({onPress, text}) =>
         width={350}
         onPress={onPress}
     >
-        <Text>{text}</Text>
+        <Text style={{ fontFamily: 'OuterSpace'}}>{text}</Text>
     </ThemedButton>
 
 export default LaunchButton;

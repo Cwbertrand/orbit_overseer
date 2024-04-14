@@ -25,7 +25,7 @@ return (
         <Launch>
             <LaunchButton 
                 //onPress={} 
-                text={'Launch !'}
+                text={'Launch'}
             />
         </Launch>
     </LobbyWrapper>
