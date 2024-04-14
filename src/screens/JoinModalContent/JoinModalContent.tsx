@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { styles } from './styles';
+import { Text, View} from 'react-native';
 import EditUsername from '../../components/EditUsername/EditUsername';
 import { ThemedButton } from 'react-native-really-awesome-button';
 
@@ -9,32 +10,15 @@ export const JoinModalContent = () => {
             <EditUsername />
             <View> 
                 <ThemedButton 
-                    width={150} 
-                    name="bruce" 
-                    type="anchor" 
-                    style={styles.startButton}
+                    width={150}
+                    backgroundColor={'#25D366'}
+                    name="bruce"
+                    type="anchor"
+                    style={styles.Button}
                 >
-                    <Text style={[styles.textColor, styles.colorInput]}>Démarre le joue</Text>
+                    <Text style={{ fontFamily: 'OuterSpace'}}>Join</Text>
                 </ThemedButton>
             </View>
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#10ffff",
-        width: 300,
-        height: 350
-    },
-    startButton: {
-        marginBottom: 30
-    },
-    textColor: {},
-    colorInput: {
-    },
-
-});
