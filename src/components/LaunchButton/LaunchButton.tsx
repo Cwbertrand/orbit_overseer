@@ -1,14 +1,22 @@
 ﻿import React from "react";
-import {ButtonStyles, ButtonText} from './LaunchButton.style';
+import {Text} from "react-native";
+import {ThemedButton} from "react-native-really-awesome-button";
 
 interface Props {
     onPress?: () => void,
-    text?: string
+    text?: string,
+    buttonStyle?: object,
 }
 
 const LaunchButton: React.FC<Props> = ({onPress, text}) =>
-    <ButtonStyles>
-        <ButtonText>{text}</ButtonText>
-    </ButtonStyles>
+    <ThemedButton
+        name="bruce"
+        type="anchor"
+        backgroundColor={'#25D366'}
+        width={350}
+        onPress={onPress}
+    >
+        <Text>{text}</Text>
+    </ThemedButton>
 
 export default LaunchButton;

@@ -50,15 +50,10 @@ const HomeScreen = (props: HomeScreenProps) => {
                 <ThemedButton 
                   width={150} 
                   name="bruce" 
-                  type="anchor" 
-                  style={styles.opCreateJoin}
+                  type="anchor"
                   onPress={() => navigation.navigate('Lobby' as never)}
                 >
-                  <Text 
-                      style={[styles.buttonText, styles.blackInput]}
-                  >
-                    Create
-                  </Text>
+                  <Text>Create</Text>
                 </ThemedButton>
                 
           {/* button for joining a game */}
@@ -83,24 +78,16 @@ const HomeScreen = (props: HomeScreenProps) => {
                     style={{marginBottom: 10}}
                     onPress={() => navigation.navigate('History' as never)}
                 >
-                  <Text 
-                      style={[styles.buttonText, styles.blackInput]}
-                  >
-                    History
-                  </Text>
+                  <Text>History</Text>
                 </ThemedButton>
                 
                 <ThemedButton 
                     width={350} 
                     name="bruce" 
-                    type="youtube" 
-                    style={styles.buttonText}
+                    type="anchor"
+                    backgroundColor={'#cc0000'}
                 >
-                  <Text 
-                      style={styles.buttonText}
-                  >
-                    Exit
-                  </Text>
+                  <Text>Exit</Text>
                 </ThemedButton>
               </View>
             </View>
@@ -118,7 +105,6 @@ const HomeScreen = (props: HomeScreenProps) => {
       </ReusableModal>
     </>
   );
-};
+}
 
 export default HomeScreen;
-

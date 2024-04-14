@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -12,24 +11,16 @@ export const styles = StyleSheet.create({
     },
     bottomBtns: {
         flex: .5,
-        marginHorizontal: 30,
+        marginHorizontal: 15,
         width: 200
     },
     createJoinBtns: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginBottom: 10,
     },
     opCreateJoin: {
-        width: '40%',
-        marginBottom: 15,
-    },
-    buttonText: {
-        fontSize: 14,
-        color: '#fff', 
-        textAlign: 'center',
-    },
-    blackInput:{
-        color: '#000',
+        width: '45%',    
     },
 });
