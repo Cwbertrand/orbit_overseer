@@ -5,6 +5,7 @@ import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import ListUser from '../../components/ListUser/ListUser';
 import { LobbyWrapper, Launch, NavLobby } from "./styles";
 import { useNavigation } from '@react-navigation/native';
+import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 
 
 const LobbyScreen = () => {
@@ -12,7 +13,9 @@ const LobbyScreen = () => {
     
 return (
     <LobbyWrapper>
-        <Text>[ID utilisateur]</Text>
+        
+        <DisplayIdSession />
+        
         <NavLobby>
             <ReturnButton
                 onPress={() => navigation.goBack()} 

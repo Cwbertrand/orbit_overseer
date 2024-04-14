@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput, TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
+import {styles} from "./styles";
 
 interface Props {
     placeholder?: string;
@@ -10,7 +11,7 @@ interface Props {
     text?: string; 
 }
 
-export const CopyIdToClipboard = ({ placeholder, style, viewStyles, disabled, text }: Props) => {
+export const CopyIdToClipboard = ({  viewStyles, text }: Props) => {
     const [textValue, setTextValue] = useState<string>(text || '');
     const [isCopied, setIsCopied] = useState(false);
 
@@ -34,14 +35,3 @@ export const CopyIdToClipboard = ({ placeholder, style, viewStyles, disabled, te
         
     );
 };
-
-const styles = StyleSheet.create({
-    copiedText: {
-        color: '#fff',
-        backgroundColor: '#16db65',
-        padding: 5,
-        position: 'absolute',
-        alignSelf: 'flex-end',
-        width: 60,
-    },
-});

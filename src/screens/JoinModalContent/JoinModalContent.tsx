@@ -3,11 +3,15 @@ import { styles } from './styles';
 import { Text, View} from 'react-native';
 import EditUsername from '../../components/EditUsername/EditUsername';
 import { ThemedButton } from 'react-native-really-awesome-button';
+import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 
 export const JoinModalContent = () => {
     return (
         <View style={styles.container}>
+            
+            <DisplayIdSession />
             <EditUsername />
+            
             <View> 
                 <ThemedButton 
                     width={150}

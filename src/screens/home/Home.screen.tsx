@@ -10,6 +10,7 @@ import { JoinModalContent } from '../JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 SplashScreen.preventAutoHideAsync();
 
 interface HomeScreenProps {}
@@ -60,6 +61,7 @@ const HomeScreen = (props: HomeScreenProps) => {
             bounces={false}
             contentContainerStyle={styles.scrollViewContainer}
           >
+            <DisplayIdSession />
             <EditUsername />
             
             <View style={styles.bottomBtns} onLayout={onLayoutRootView}>

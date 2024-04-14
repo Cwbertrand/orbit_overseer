@@ -1,6 +1,4 @@
-import {styles} from "./EditUsername.style";
-import {CopyIdToClipboard} from "../CopyIdToClipboard/CopyIdToClipboard";
-import uuid from "react-native-uuid";
+import {styles} from "./style";
 import {TouchableOpacity, View} from "react-native";
 import InputText from "../InputText/InputText";
 import {getUserName, storeUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
@@ -26,12 +24,7 @@ const EditUsername = () => {
 
     return (
             <View style={styles.topBtns}>
-                <CopyIdToClipboard
-                    text={uuid.v4() as string}
-                    style={styles.inputStyles}
-                    viewStyles={styles.viewStyles}
-                    disabled
-                />
+                
                 <View style={styles.inputRow}>
                     <InputText
                         placeholder={userName}
