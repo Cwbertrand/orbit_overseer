@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-
 export const styles = StyleSheet.create({
 
     TextInput: {
@@ -14,27 +13,22 @@ export const styles = StyleSheet.create({
         display: "flex",
         alignSelf: "center",
         width: '90%',
-        paddingVertical: 7,
+        paddingVertical: 8,
         paddingHorizontal: 15,
-        borderWidth: 2,
         borderColor: 'transparent',
         backgroundColor: 'rgba(4,13,62, 0.9)',
         flexDirection: "row",
-        marginBottom: 2,
     },
-    topBtns: {
+    inputUsername: {
         flex: 1,
-        marginTop: 70,
-        marginHorizontal: 30,
+        marginHorizontal: 20,
+        marginBottom: 10,
+        marginTop: 10,
     },
     btnEdit: {
         backgroundColor: 'rgb(4,13,12)',
-        padding: 7.5,
-        borderEndStartRadius: 0,
-        borderTopRightRadius: 5,
-        borderBottomRightRadius: 5,
+        padding: 8,
         position: 'absolute',
-        right: 20,
-        bottom: 3
+        right: 0,
     },
 })

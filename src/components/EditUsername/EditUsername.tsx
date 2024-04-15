@@ -23,7 +23,7 @@ const EditUsername = () => {
     };
 
     return (
-            <View style={styles.topBtns}>
+            <View style={styles.inputUsername}>
                 <InputText
                     placeholder={userName}
                     style={styles.TextInput}

@@ -63,11 +63,11 @@ const HomeScreen = (props: HomeScreenProps) => {
             contentContainerStyle={globalStyles.scrollViewContainer}
           >
             <DisplayIdSession />
+              
             <EditUsername />
             
             <NavBar  onLayout={onLayoutRootView}>
                 <ButtonGroup>
-
                   {/* button for create a game */}
                   <ThemedButton
                       width={150}
