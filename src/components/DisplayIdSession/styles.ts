@@ -3,8 +3,9 @@ import {StyleSheet} from "react-native";
 export const styles = StyleSheet.create({
     inputStyles: {
         width: '100%',
-        fontSize: 8,
+        fontSize: 16,
         color: '#fff',
+        fontFamily: 'OuterSpace'
     },
     viewStyles: {
         display: "flex",

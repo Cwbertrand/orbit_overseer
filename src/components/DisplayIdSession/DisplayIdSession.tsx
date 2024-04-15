@@ -2,9 +2,6 @@ import uuid from "react-native-uuid";
 import {styles} from "./styles";
 import {CopyIdToClipboard} from "../CopyIdToClipboard/CopyIdToClipboard";
 import * as React from "react";
-import {useState} from "react";
-import * as Clipboard from "expo-clipboard";
-
 
 interface Props {
     placeholder?: string;
@@ -15,8 +12,6 @@ interface Props {
 }
 
 export const DisplayIdSession = () => {
-
-
     
     return (
         <CopyIdToClipboard

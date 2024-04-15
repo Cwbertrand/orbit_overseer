@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
         width: '100%',
         fontSize: 8,
         color: '#fff',
+        
     },
     viewStyles: {
         display: "flex",
@@ -26,7 +27,6 @@ export const styles = StyleSheet.create({
         marginHorizontal: 30,
     },
     inputRow: {
-        //flexDirection: 'row',
         marginVertical: 19,
     },
     btnEdit: {

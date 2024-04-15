@@ -30,7 +30,7 @@ export const CopyIdToClipboard = ({  viewStyles, text }: Props) => {
             >
                 <Text style={{color: '#fff'}}>{text}</Text>
             </TouchableOpacity>
-            {isCopied && <Text style={styles.copiedText}>Copied</Text>}
+            {isCopied && <Text style={styles.copiedText}>Done</Text>}
         </>
         
     );
