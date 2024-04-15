@@ -3,10 +3,11 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 
-    inputStyles: {
+    TextInput: {
         width: '100%',
-        fontSize: 8,
+        fontSize: 14,
         color: '#fff',
+        fontFamily: 'OuterSpace'
         
     },
     viewStyles: {
@@ -25,9 +26,6 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginTop: 70,
         marginHorizontal: 30,
-    },
-    inputRow: {
-        marginVertical: 19,
     },
     btnEdit: {
         backgroundColor: 'rgb(4,13,12)',

@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
         fontFamily: 'OuterSpace',
         fontSize: 10,
         backgroundColor: '#25D366',
-        padding: 5,
         position: 'absolute',
         alignSelf: 'flex-end',
     },

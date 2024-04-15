@@ -24,18 +24,17 @@ const EditUsername = () => {
 
     return (
             <View style={styles.topBtns}>
+                <InputText
+                    placeholder={userName}
+                    style={styles.TextInput}
+                    viewStyles={styles.viewStyles}
+                    onSave={handleStoreUserName}
+                />
                 
-                <View style={styles.inputRow}>
-                    <InputText
-                        placeholder={userName}
-                        style={styles.inputStyles}
-                        viewStyles={styles.viewStyles}
-                        onSave={handleStoreUserName}
-                    />
-                    <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
-                        <AntDesign name="edit" size={30} color="white" />
-                    </TouchableOpacity>
-                </View>
+                {/*Edit button*/}
+                <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
+                    <AntDesign name="edit" size={30} color="white" />
+                </TouchableOpacity>
             </View>
     );
 };

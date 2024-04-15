@@ -7,9 +7,11 @@ export const styles = StyleSheet.create({
         color: '#fff',
         fontFamily: 'OuterSpace'
     },
+
     viewStyles: {
         display: "flex",
-        alignSelf: "center",
+        alignItems: "center",
+        justifyContent: "center",
         width: '90%',
         paddingVertical: 7,
         paddingHorizontal: 15,
@@ -19,4 +21,4 @@ export const styles = StyleSheet.create({
         flexDirection: "row",
         marginBottom: 2,
     },
-});
+})

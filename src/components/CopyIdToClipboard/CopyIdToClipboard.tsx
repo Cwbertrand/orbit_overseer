@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import {TouchableOpacity, Text, View} from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import {styles} from "./styles";
 
@@ -22,16 +22,16 @@ export const CopyIdToClipboard = ({  viewStyles, text }: Props) => {
     };
 
     return (
-        <>
+        <View style={{ alignItems: 'center', marginTop: 10 }}>
             <TouchableOpacity
                 style={viewStyles}
                 onPress={copyToClipboard} 
                 disabled={isCopied}
             >
-                <Text style={{color: '#fff'}}>{text}</Text>
+                <Text style={{color: '#fff', fontFamily:'OuterSpace', fontSize: 8}}>{text}</Text>
             </TouchableOpacity>
             {isCopied && <Text style={styles.copiedText}>Done</Text>}
-        </>
+        </View>
         
     );
 };

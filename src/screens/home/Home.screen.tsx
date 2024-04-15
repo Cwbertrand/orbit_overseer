@@ -5,7 +5,7 @@ import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 SplashScreen.preventAutoHideAsync();
 import {globalStyles} from "../../globals/styles";
-import { styles } from './styles';
+import {NavBar, ButtonGroup} from './styles';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
 import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
@@ -65,54 +65,54 @@ const HomeScreen = (props: HomeScreenProps) => {
             <DisplayIdSession />
             <EditUsername />
             
-            <View style={styles.bottomBtns} onLayout={onLayoutRootView}>
-              <View style={styles.createJoinBtns}>
-                
-          {/* button for create a game */}
-                <ThemedButton 
-                  width={150} 
-                  name="bruce" 
-                  type="anchor"
-                  onPress={() => navigation.navigate('Lobby' as never)}
-                >
-                  <Text style={{ fontFamily: 'OuterSpace'}}>Create</Text>
-                </ThemedButton>
-                
-          {/* button for joining a game */}
-                <ThemedButton 
-                    width={150} 
-                    backgroundColor={'#25D366'}
-                    name="bruce" 
-                    type="anchor" 
-                    style={styles.opCreateJoin}
-                    onPress={() => setModalVisible(true)} 
-                >
-                  <Text style={{ fontFamily: 'OuterSpace'}}>Join</Text>
-                </ThemedButton>
-              </View>
-              
-              <View>
-                {/* button to see party history */}
-                <ThemedButton 
-                    width={350} 
-                    name="bruce" 
-                    type="secondary" 
-                    style={{marginBottom: 10}}
-                    onPress={() => navigation.navigate('History' as never)}
-                >
-                  <Text style={{ fontFamily: 'OuterSpace'}}>History</Text>
-                </ThemedButton>
-                
-                <ThemedButton 
-                    width={350} 
-                    name="bruce" 
-                    type="anchor"
-                    backgroundColor={'#cc0000'}
-                >
-                  <Text style={{ fontFamily: 'OuterSpace'}}>Exit</Text>
-                </ThemedButton>
-              </View>
-            </View>
+            <NavBar  onLayout={onLayoutRootView}>
+                <ButtonGroup>
+
+                  {/* button for create a game */}
+                  <ThemedButton
+                      width={150}
+                      name="bruce"
+                      type="anchor"
+                      onPress={() => navigation.navigate('Lobby' as never)}
+                  >
+                    <Text style={{ fontFamily: 'OuterSpace'}}>Create</Text>
+                  </ThemedButton>
+
+                  {/* button for joining a game */}
+                  <ThemedButton
+                      width={150}
+                      backgroundColor={'#25D366'}
+                      name="bruce"
+                      type="anchor"
+                      onPress={() => setModalVisible(true)}
+                  >
+                    <Text style={{ fontFamily: 'OuterSpace'}}>Join</Text>
+                  </ThemedButton>
+                </ButtonGroup>
+
+                <View>
+                  {/* button to see party history */}
+                  <ThemedButton
+                      width={350}
+                      name="bruce"
+                      type="secondary"
+                      style={{marginBottom: 10}}
+                      onPress={() => navigation.navigate('History' as never)}
+                  >
+                    <Text style={{ fontFamily: 'OuterSpace'}}>History</Text>
+                  </ThemedButton>
+
+                  <ThemedButton
+                      width={350}
+                      name="bruce"
+                      type="anchor"
+                      backgroundColor={'#cc0000'}
+                  >
+                    <Text style={{ fontFamily: 'OuterSpace'}}>Exit</Text>
+                  </ThemedButton>
+                </View>
+            </NavBar>
+            
           </ScrollView>
       </ImageBackground>
       
