@@ -1,17 +1,18 @@
 import * as React from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import { Text, View, ScrollView, ImageBackground } from 'react-native';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+SplashScreen.preventAutoHideAsync();
+import {globalStyles} from "../../globals/styles";
 import { styles } from './styles';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
-import {useCallback, useEffect, useState} from 'react';
 import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 import EditUsername from "../../components/EditUsername/EditUsername";
-import { JoinModalContent } from '../JoinModalContent/JoinModalContent';
+import {JoinModalContent} from '../../components/JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
-import { useFonts } from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
-SplashScreen.preventAutoHideAsync();
 
 interface HomeScreenProps {}
 
@@ -54,12 +55,12 @@ const HomeScreen = (props: HomeScreenProps) => {
   return (
     <>
       <ImageBackground
-        source={require('../../../assets/img/homepage/wallpaper.png')}
-        style={styles.container}
+        source={require('../../../assets/img/homepage/home.png')}
+        style={globalStyles.container}
       >
           <ScrollView 
             bounces={false}
-            contentContainerStyle={styles.scrollViewContainer}
+            contentContainerStyle={globalStyles.scrollViewContainer}
           >
             <DisplayIdSession />
             <EditUsername />

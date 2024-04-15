@@ -14,6 +14,7 @@ const LaunchButton: React.FC<Props> = ({onPress, text}) =>
         type="anchor"
         backgroundColor={'#25D366'}
         width={350}
+        style={{marginBottom: 10}}
         onPress={onPress}
     >
         <Text style={{ fontFamily: 'OuterSpace'}}>{text}</Text>

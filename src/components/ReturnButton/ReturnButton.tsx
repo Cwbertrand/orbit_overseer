@@ -8,14 +8,14 @@ interface Props {
     buttonStyle?: object,
 }
 
-const ReturnButton: React.FC<Props> = ({onPress, text, buttonStyle}) =>
+const ReturnButton: React.FC<Props> = ({onPress, text}) =>
     <ThemedButton
         name="bruce"
         type="anchor"
         backgroundColor={'#cc0000'}
         width={350}
-        onPress={onPress} 
-        style={buttonStyle}
+        onPress={onPress}
+        style={{marginBottom: 10}}
     >
         <Text style={{ fontFamily: 'OuterSpace'}}>{text}</Text>
     </ThemedButton>

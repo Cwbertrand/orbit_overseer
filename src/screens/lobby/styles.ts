@@ -5,15 +5,9 @@ export const LobbyWrapper = styled.View`
   position: relative;
 `;
 
-export const Launch = styled.View`
+export const NavButton = styled.View`
     flex: 1;
-    alignItems: center;
-    justify-content: flex-end;
-    margin-bottom: 10%;
-`;
-
-export const NavLobby = styled.View`
-    flex: 0.3;
     align-items: center;
-    margin-top: 10%;
+    justify-content: flex-end;
+    margin: 0 20px 10% 20px;
 `;
