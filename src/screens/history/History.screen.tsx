@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Return } from "./styles";
 import EditUsername from "../../components/EditUsername/EditUsername";
 import * as SplashScreen from 'expo-splash-screen';
+import {globalStyles} from "../../globals/styles";
+import {ImageBackground} from "react-native";
 SplashScreen.preventAutoHideAsync();
 
 const HistoryScreen = () => {
@@ -12,16 +14,21 @@ const HistoryScreen = () => {
     
     return (
         <>
-            <EditUsername />
-            
-            <Return>
-                <ReturnButton
-                    onPress={() => navigation.goBack()}
-                    text={'Return'}
-                    buttonStyle={buttonStyle}
-                />
-            </Return>
-            
+            <ImageBackground
+                source={require('../../../assets/img/history/history.png')}
+                style={globalStyles.container}
+                resizeMode='cover'
+            >
+                <EditUsername />
+                
+                <Return>
+                    <ReturnButton
+                        onPress={() => navigation.goBack()}
+                        text={'Return'}
+                        buttonStyle={buttonStyle}
+                    />
+                </Return>
+            </ImageBackground>
         </>
     )};
 
