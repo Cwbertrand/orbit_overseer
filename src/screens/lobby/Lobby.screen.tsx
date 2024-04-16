@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { FlatList, Text, View } from 'react-native';
 import LaunchButton from '../../components/LaunchButton/LaunchButton';
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
 import { LobbyWrapper,  NavButton } from "./styles";
 import { useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../app/redux/store/store';
-import { ThemedButton } from 'react-native-really-awesome-button';
-import { useEffect, useRef } from 'react';
-import { setGameId, setPlayers } from '../../app/redux/slice/gameReducer';
+import { useEffect} from 'react';
+import { setPlayers } from '../../app/redux/slice/gameReducer';
 import webSocketService, { InitialMessage } from '../../app/redux/slice/WebSocketService';
 import { Player } from '../../models/player';
 import {ImageBackground} from 'react-native';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import ListUser from '../../components/ListUser/ListUser';
 import {globalStyles} from "../../globals/styles";
+import GameID from "../../components/GameID/GameID";
 
 const LobbyScreen = () => {
     const navigation = useNavigation();
@@ -67,8 +66,7 @@ const LobbyScreen = () => {
                 style={globalStyles.container}
                 resizeMode='cover'
             >
-
-                <Text style={{ color: 'white' }}>Id de joue: {gameId}</Text>
+                <GameID />
                 
                 <DisplayIdSession />
 
