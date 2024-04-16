@@ -7,13 +7,13 @@ interface Props {
     style?: object;
     viewStyles?: object;
     value?: any;
-    onSave?: (text: string) => void;
+    onChangeText?: (text: string) => void;
 }
 
-const InputText = ({placeholder, style, viewStyles, onSave}: Props) => {
+const InputText = ({placeholder, style, viewStyles, onChangeText }: Props) => {
     const [textValue, setTextValue] = useState<string>('');
     const handleEndEditing = () => {
-        if (onSave != undefined) onSave(textValue);
+        if (onChangeText  != undefined) onChangeText (textValue);
     };
     return (
         <View style={viewStyles}>

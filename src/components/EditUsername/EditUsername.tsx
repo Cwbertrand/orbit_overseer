@@ -37,9 +37,9 @@ const EditUsername = () => {
                         placeholder={userName}
                         style={styles.inputStyles}
                         viewStyles={styles.viewStyles}
-                        onSave={handleStoreUserName}
+                        onChangeText={handleStoreUserName}
                     />
-                    <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
+                    <TouchableOpacity style={styles.btnEdit} onPress={() => {storeUserName(userName)}}>
                         <AntDesign name="edit" size={30} color="white" />
                     </TouchableOpacity>
                 </View>
