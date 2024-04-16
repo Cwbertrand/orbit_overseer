@@ -7,7 +7,7 @@ export const ListUserBloc = styled.View `
     margin: auto;
     padding: 10px;
     border-radius: 10px;
-    background-color: #212121;
+    background-color: rgba(33, 33, 33, 0.9);
     border: black 1px;
 `;
 

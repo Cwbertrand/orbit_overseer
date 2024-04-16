@@ -1,38 +1,16 @@
-import { StyleSheet } from 'react-native';
+import styled from 'styled-components/native';
 
+export const NavBar = styled.View`
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 10%;
+`;
 
-export const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-    },
-    scrollViewContainer: {
-        flex: 1,
-    },
-    bottomBtns: {
-        flex: .5,
-        marginHorizontal: 30,
-        width: 200
-    },
-    createJoinBtns: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    opCreateJoin: {
-        width: '40%',
-        marginBottom: 15,
-    },
-    buttonText: {
-        fontSize: 14,
-        color: '#fff', 
-        textAlign: 'center',
-        fontFamily: 'Outer-Space',
-    },
-    blackInput:{
-        color: '#000',
-    },
-    
-
-});
+export const ButtonGroup = styled.View`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+`;

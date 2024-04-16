@@ -1,6 +1,4 @@
-import {styles} from "./EditUsername.style";
-import {CopyIdToClipboard} from "../CopyIdToClipboard/CopyIdToClipboard";
-import uuid from "react-native-uuid";
+import {styles} from "./style";
 import {TouchableOpacity, View} from "react-native";
 import InputText from "../InputText/InputText";
 import {getUserName, storeUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
@@ -25,24 +23,18 @@ const EditUsername = () => {
     };
 
     return (
-            <View style={styles.topBtns}>
-                <CopyIdToClipboard
-                    text={uuid.v4() as string}
-                    style={styles.inputStyles}
+            <View style={styles.inputUsername}>
+                <InputText
+                    placeholder={userName}
+                    style={styles.TextInput}
                     viewStyles={styles.viewStyles}
-                    disabled
+                    onChangeText={handleStoreUserName}
                 />
-                <View style={styles.inputRow}>
-                    <InputText
-                        placeholder={userName}
-                        style={styles.inputStyles}
-                        viewStyles={styles.viewStyles}
-                        onChangeText={handleStoreUserName}
-                    />
-                    <TouchableOpacity style={styles.btnEdit} onPress={() => {storeUserName(userName)}}>
-                        <AntDesign name="edit" size={30} color="white" />
-                    </TouchableOpacity>
-                </View>
+                
+                {/*Edit button*/}
+                <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
+                    <AntDesign name="edit" size={30} color="white" />
+                </TouchableOpacity>
             </View>
     );
 };
