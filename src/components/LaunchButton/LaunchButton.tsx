@@ -6,6 +6,7 @@ interface Props {
     onPress?: () => void,
     text?: string,
     buttonStyle?: object,
+    disabled?: boolean,
 }
 
 const LaunchButton: React.FC<Props> = ({onPress, text}) =>

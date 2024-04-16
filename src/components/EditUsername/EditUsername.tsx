@@ -28,7 +28,7 @@ const EditUsername = () => {
                     placeholder={userName}
                     style={styles.TextInput}
                     viewStyles={styles.viewStyles}
-                    onSave={handleStoreUserName}
+                    onChangeText={handleStoreUserName}
                 />
                 
                 {/*Edit button*/}

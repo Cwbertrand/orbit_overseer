@@ -1,5 +1,4 @@
 import * as React from 'react';
-import {useCallback, useEffect, useState} from 'react';
 import { Text, View, ScrollView, ImageBackground } from 'react-native';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
@@ -13,6 +12,10 @@ import EditUsername from "../../components/EditUsername/EditUsername";
 import {JoinModalContent} from '../../components/JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
+import { useAppDispatch, useAppSelector } from '../../app/redux/store/store';
+import { createGame, setGameId, setPlayers } from '../../app/redux/slice/gameReducer';
+import uuid from "react-native-uuid";
+import {useCallback, useEffect, useState} from "react";
 
 interface HomeScreenProps {}
 
@@ -22,6 +25,8 @@ const HomeScreen = (props: HomeScreenProps) => {
   const [modalVisible, setModalVisible] = useState(false);
   
   // load username 
+  const dispatch = useAppDispatch();
+
   useEffect(() => {
     const loadUserName = async () => {
       const storedUserName = await getUserName();
@@ -31,6 +36,18 @@ const HomeScreen = (props: HomeScreenProps) => {
   }, []);
 
   // handle username
+  const handleCreateGame = () => {
+    dispatch(createGame());
+    const currentPlayer = {
+      userId: uuid.v4() as string,
+      name: userName,
+      status: false,
+      isCreator: true
+    }
+    dispatch(setPlayers([currentPlayer]));
+    navigation.navigate('Lobby' as never)
+  };
+
   const handleStoreUserName = async (newUserName: string) => {
     await storeUserName(newUserName);
     setUserName(newUserName);
@@ -73,7 +90,7 @@ const HomeScreen = (props: HomeScreenProps) => {
                       width={150}
                       name="bruce"
                       type="anchor"
-                      onPress={() => navigation.navigate('Lobby' as never)}
+                      onPress={handleCreateGame}
                   >
                     <Text style={{ fontFamily: 'OuterSpace'}}>Create</Text>
                   </ThemedButton>
@@ -127,6 +144,7 @@ const HomeScreen = (props: HomeScreenProps) => {
       </ReusableModal>
     </>
   );
-}
+};
 
 export default HomeScreen;
+
