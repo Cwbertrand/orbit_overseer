@@ -2,7 +2,7 @@ import {styles} from "./EditUsername.style";
 import {CopyIdToClipboard} from "../CopyIdToClipboard/CopyIdToClipboard";
 import uuid from "react-native-uuid";
 import {TouchableOpacity, View} from "react-native";
-import InputText from "../InputText";
+import InputText from "../InputText/InputText";
 import {getUserName, storeUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
 import {AntDesign} from "@expo/vector-icons";
 import * as React from "react";

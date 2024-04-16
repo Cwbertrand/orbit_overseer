@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from './src/screens/home/HomeScreen';
+import HomeScreen from './src/screens/home/Home.screen';
 import LobbyScreen from './src/screens/lobby/Lobby.screen';
 import HistoryScreen from "./src/screens/history/History.screen";
 import { Provider } from 'react-redux';
