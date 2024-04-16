@@ -19,7 +19,6 @@ const LobbyScreen = () => {
     const navigation = useNavigation();
     const { gameId, players } = useAppSelector(state => state.game);
     const dispatch = useAppDispatch();
-    console.log(gameId);
     useEffect(() => {
         if (gameId) {
             // Checking if a connection is already established, if so, no reconnection should be necessary
@@ -69,16 +68,7 @@ const LobbyScreen = () => {
                 resizeMode='cover'
             >
 
-                <Text>Id de joue: {gameId}</Text>
-                
-                <View>
-                    {players.map((player, index) => (
-                        <View key={index} style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }}>
-                            <Text>Name: {player.name}</Text>
-                            <Text>Status: {player.status ? 'Online' : 'Offline'}</Text>
-                        </View>
-                    ))}
-                </View>
+                <Text style={{ color: 'white' }}>Id de joue: {gameId}</Text>
                 
                 <DisplayIdSession />
 
