@@ -5,7 +5,8 @@ import { Return } from "./styles";
 import EditUsername from "../../components/EditUsername/EditUsername";
 import * as SplashScreen from 'expo-splash-screen';
 import {globalStyles} from "../../globals/styles";
-import {ImageBackground} from "react-native";
+import {ImageBackground, Text, View} from "react-native";
+import AccordionHistory from "../../components/AccordionHistory/AccordionHistory";
 SplashScreen.preventAutoHideAsync();
 
 const HistoryScreen = () => {
@@ -20,6 +21,8 @@ const HistoryScreen = () => {
                 resizeMode='cover'
             >
                 <EditUsername />
+                
+                <AccordionHistory />
                 
                 <Return>
                     <ReturnButton
