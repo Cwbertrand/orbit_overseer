@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, LayoutAnimation } from 'react-native';
+import { styles } from './styles';
 
 const AccordionHistory = () => {
     const [openSection, setOpenSection] = useState<number | null>(null);
@@ -10,19 +11,19 @@ const AccordionHistory = () => {
     ];
 
     const toggleSection = (sectionIndex: number) => {
+        // Prépare une animation de mise en page
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
         setOpenSection(openSection === sectionIndex ? null : sectionIndex);
     };
 
-    const textStyle = { color: 'white' };
-
     return (
-        <View>
+        <View style={styles.container}>
             {sections.map((section, index) => (
-                <View key={index}>
+                <View style={styles.section} key={index}>
                     <TouchableOpacity onPress={() => toggleSection(index)}>
-                        <Text style={textStyle}>{section.title}</Text>
+                        <Text style={styles.title}>{section.title}</Text>
                     </TouchableOpacity>
-                    {openSection === index && <Text style={textStyle}>{section.content}</Text>}
+                    {openSection === index && <Text style={styles.content}>{section.content}</Text>}
                 </View>
             ))}
         </View>
