@@ -28,7 +28,7 @@ export const CopyIdToClipboard = ({  viewStyles, text }: Props) => {
                 onPress={copyToClipboard} 
                 disabled={isCopied}
             >
-                <Text style={{color: '#fff', fontSize: 14, textAlign: 'center' }}>{text}</Text>
+                <Text style={{color: '#40ec69', fontSize: 14, textAlign: 'center' }}>{text}</Text>
             </TouchableOpacity>
             {isCopied && <Text style={styles.copiedText}>Done</Text>}
         </View>

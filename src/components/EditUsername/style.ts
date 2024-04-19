@@ -3,32 +3,36 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
 
     TextInput: {
-        width: '100%',
-        fontSize: 14,
-        color: '#fff',
-        fontFamily: 'OuterSpace'
-        
+        flex: 1, 
+        fontSize: 12,
+        textAlign: 'center',
+        color: '#40ec69',
+        fontFamily: 'OuterSpace',
     },
     viewStyles: {
-        display: "flex",
         alignSelf: "center",
         width: '90%',
         paddingVertical: 8,
         paddingHorizontal: 15,
-        borderColor: 'transparent',
-        backgroundColor: 'rgba(4,13,62, 0.9)',
+        backgroundColor: '#063315',
         flexDirection: "row",
+        alignItems: 'center',
+        borderColor: '#40ec69',
+        borderWidth: 1,
+        borderRadius: 10,
+        marginBottom: 20,
     },
     inputUsername: {
         flex: 1,
+        height: 30,
         marginHorizontal: 20,
         marginBottom: 10,
         marginTop: 10,
     },
     btnEdit: {
-        backgroundColor: 'rgb(4,13,12)',
-        padding: 8,
-        position: 'absolute',
-        right: 0,
+        position: 'absolute', 
+        right: 40,            
+        top: 10,               
+        padding: 2,       
     },
 })
