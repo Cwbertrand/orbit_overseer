@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styles } from './styles';
-import {Text, TextInput, View} from 'react-native';
+import {ImageBackground, Text, TextInput, View} from 'react-native';
 import EditUsername from '../../components/EditUsername/EditUsername';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
@@ -10,6 +10,7 @@ import {useEffect, useState} from "react";
 import {getUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
 import uuid from "react-native-uuid";
 import {setGameId, setPlayers} from "../../app/redux/slice/gameReducer";
+import {globalStyles} from "../../globals/styles";
 
 export const JoinModalContent = () => {
     const navigation = useNavigation();
@@ -43,16 +44,25 @@ export const JoinModalContent = () => {
     };
     
     return (
-        <View style={styles.container}>
-            
+        <ImageBackground
+            source={require('../../../assets/img/modal/fontScreen.png')}
+            style={styles.container}
+            resizeMode='cover'
+        >            
             <DisplayIdSession />
+            
             <EditUsername />
 
-            <TextInput
-                onChangeText={setGameIdInput}
-                value={gameIdInput}
-                placeholder="Enter the game ID"
-            />
+            <View style={styles.viewStyles}>
+                <TextInput
+                    onChangeText={setGameIdInput}
+                    value={gameIdInput}
+                    placeholder="Enter game ID"
+                    placeholderTextColor="#40ec69"
+                    style={styles.TextInput}
+                />
+            </View>
+            
             
             <View> 
                 <ThemedButton 
@@ -66,6 +76,6 @@ export const JoinModalContent = () => {
                     <Text style={{ fontFamily: 'OuterSpace'}}>Join</Text>
                 </ThemedButton>
             </View>
-        </View>
+        </ImageBackground>
     );
 };
