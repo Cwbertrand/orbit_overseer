@@ -20,7 +20,7 @@ const HistoryScreen = () => {
                 style={globalStyles.container}
                 resizeMode='cover'
             >
-                <EditUsername />
+                <EditUsername showButton={false} />
                 
                 <AccordionHistory />
                 

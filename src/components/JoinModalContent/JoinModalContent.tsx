@@ -51,7 +51,7 @@ export const JoinModalContent = () => {
         >            
             <DisplayIdSession />
             
-            <EditUsername />
+            <EditUsername showButton={false} />
 
             <View style={styles.viewStyles}>
                 <TextInput

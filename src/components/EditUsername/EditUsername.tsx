@@ -6,7 +6,7 @@ import {AntDesign} from "@expo/vector-icons";
 import * as React from "react";
 import {useEffect, useState} from "react";
 
-const EditUsername = () => {
+const EditUsername = ({showButton = true}) => {
     const [userName, setUserName] = useState<string>('')
 
     useEffect(() => {
@@ -30,11 +30,13 @@ const EditUsername = () => {
                     viewStyles={styles.viewStyles}
                     onChangeText={handleStoreUserName}
                 />
-                
-                {/*Edit button*/}
+
+                {/*Edit button with condition*/}
+                {showButton && (
                 <TouchableOpacity style={styles.btnEdit} onPress={() => storeUserName(userName)}>
-                    <AntDesign name="edit" size={30} color="white" />
+                    <AntDesign name="edit" size={20} color="#40ec69" />
                 </TouchableOpacity>
+                )}
             </View>
     );
 };

@@ -24,7 +24,7 @@ const InputText = ({placeholder, style, viewStyles, onChangeText }: Props) => {
                 onEndEditing={handleEndEditing}
                 value={textValue}
                 placeholder={placeholder}
-                placeholderTextColor={`#fff`}
+                placeholderTextColor={`#40ec69`}
             />
         </View>
     );
