@@ -13,11 +13,13 @@ import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSessi
 import ListUser from '../../components/ListUser/ListUser';
 import {globalStyles} from "../../globals/styles";
 import GameID from "../../components/GameID/GameID";
+import { getUserId } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 
 const LobbyScreen = () => {
     const navigation = useNavigation();
     const { gameId, players } = useAppSelector(state => state.game);
     const dispatch = useAppDispatch();
+
     useEffect(() => {
         if (gameId) {
             // Checking if a connection is already established, if so, no reconnection should be necessary
@@ -58,6 +60,8 @@ const LobbyScreen = () => {
 
         }
     }, [dispatch, gameId]);
+
+
     
     return (
         <LobbyWrapper>
@@ -67,14 +71,11 @@ const LobbyScreen = () => {
                 resizeMode='cover'
             >
                 <GameID />
-                
                 <DisplayIdSession />
-
                 <ListUser/>
 
                 <NavButton>
                     <LaunchButton
-                        //onPress={} 
                         text={'Launch'}
                         disabled={!players.every(player => player.status)}
                     />

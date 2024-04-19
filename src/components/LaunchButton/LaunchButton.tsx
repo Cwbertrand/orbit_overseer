@@ -9,14 +9,15 @@ interface Props {
     disabled?: boolean,
 }
 
-const LaunchButton: React.FC<Props> = ({onPress, text}) =>
+const LaunchButton: React.FC<Props> = ({onPress, text, disabled}) =>
     <ThemedButton
         name="bruce"
         type="anchor"
-        backgroundColor={'#25D366'}
+        backgroundColor={ disabled ? 'gray' : '#25D366' }
         width={350}
         style={{marginBottom: 10}}
         onPress={onPress}
+        disabled={disabled}
     >
         <Text style={{ fontFamily: 'OuterSpace'}}>{text}</Text>
     </ThemedButton>

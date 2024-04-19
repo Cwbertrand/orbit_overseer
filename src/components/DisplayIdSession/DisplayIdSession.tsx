@@ -3,6 +3,7 @@ import {styles} from "./styles";
 import {CopyIdToClipboard} from "../CopyIdToClipboard/CopyIdToClipboard";
 import * as React from "react";
 import {View} from "react-native";
+import { useAppSelector } from "../../app/redux/store/store";
 
 interface Props {
     placeholder?: string;
@@ -10,19 +11,20 @@ interface Props {
     viewStyles?: object;
     disabled?: boolean;
     text?: string;
+    userId?: string;
 }
 
 export const DisplayIdSession = () => {
+    const { player } = useAppSelector(state => state.game);
     
     return (
         <View style={{ alignItems: 'center', marginTop: 10 }}>
             <CopyIdToClipboard
-                text={uuid.v4() as string}
+                text={player as string}
                 style={styles.inputStyles}
                 viewStyles={styles.viewStyles}
                 disabled
             />
         </View>
-       
     );
 };

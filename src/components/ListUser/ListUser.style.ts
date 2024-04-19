@@ -13,9 +13,17 @@ export const ListUserBloc = styled.View `
 
 export const Item = styled.View `
     padding: 10px 0;
+    padding: 10px;
+    borderBottomWidth: 1px;
+    borderBottomColor: #ccc;
+    display: flex;
+    flex-direction: row;
+    align-item: space-between;
+    justify-content: space-between;
 `;
 
 export const ItemText = styled.Text `
-    font-size: 16px;
+    font-size: 20px;
     color: white;
+    font-weight: bold;
 `; 

@@ -1,20 +1,18 @@
-﻿import React, {useEffect} from 'react';
+﻿import React, {useEffect, useState} from 'react';
 import { ListUserBloc, Item, ItemText } from "./ListUser.style";
 import {useAppDispatch, useAppSelector} from "../../app/redux/store/store";
 import webSocketService, {InitialMessage} from "../../app/redux/slice/WebSocketService";
 import {Player} from "../../models/player";
-import {setPlayers} from "../../app/redux/slice/gameReducer";
+import {changePlayerStatus, setPlayers} from "../../app/redux/slice/gameReducer";
+import SwitchInput from '../SwitchInput/SwitchInput';
+import SwitchInputSimple from '../SwitchInput/SwitchInputSimple';
+import { getUserId } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 
-let users = ['User ID 1', 'User ID 2', 'User ID 3'];
-
-interface ListUserProps {
-    users: string[];
-}
 
 const ListUser = () => {
-    const { gameId, players } = useAppSelector(state => state.game);
+    const { gameId, players, player} = useAppSelector(state => state.game);
     const dispatch = useAppDispatch();
-    console.log(gameId);
+
     useEffect(() => {
         if (gameId) {
             // Checking if a connection is already established, if so, no reconnection should be necessary
@@ -55,13 +53,19 @@ const ListUser = () => {
 
         }
     }, [dispatch, gameId]);
-    
+
+    function validateSwitch() {
+        console.log(player)
+        dispatch(changePlayerStatus(player as string))
+        return true;
+    }
+
     return (
         <ListUserBloc>
             {players.map((player, index) => (
-                <Item  key={index} style={{ padding: 10, borderBottomWidth: 1, borderBottomColor: '#ccc' }} >
-                    <ItemText>Name: {player.name}</ItemText>
-                    <ItemText>Status: {player.status ? 'Online' : 'Offline'}</ItemText>
+                <Item  key={index} >
+                    <ItemText>{player.name}</ItemText>
+                    <SwitchInputSimple validateSwitch={validateSwitch } />
                 </Item>
             ))}
         </ListUserBloc>
