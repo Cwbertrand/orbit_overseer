@@ -1,4 +1,4 @@
-import {styles} from "./style";
+import {styles} from "./styles";
 import {TouchableOpacity, View} from "react-native";
 import InputText from "../InputText/InputText";
 import {getUserName, storeUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
