@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, View, ImageBackground } from 'react-native';
+import { ImageBackground } from 'react-native';
 import {globalStyles} from "../../globals/styles";
+import {TextSuccess} from "./styles";
 
 
 const SuccessScreen = () => {
@@ -11,7 +12,7 @@ const SuccessScreen = () => {
                 source={require('../../../assets/img/success/success.png')}
                 style={globalStyles.container}
             >
-                <Text>Victory !</Text>
+                <TextSuccess>Victory !</TextSuccess>
             </ImageBackground>
         </>
     )};
