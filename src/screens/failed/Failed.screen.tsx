@@ -1,7 +1,8 @@
 import React from "react";
 import {ImageBackground} from "react-native";
 import {globalStyles} from "../../globals/styles";
-import {TextFailed} from "./styles";
+import {TextFailed, Container} from "./styles";
+import GameID from "../../components/GameID/GameID";
 
 
 const FailedScreen = () => {
@@ -12,7 +13,11 @@ const FailedScreen = () => {
                 source={require('../../../assets/img/failed/failed.png')}
                 style={globalStyles.container}
             >
-                <TextFailed>Your ship has been destroyed ...</TextFailed>
+                <GameID />
+
+                <Container>
+                    <TextFailed>Your ship has been destroyed</TextFailed>
+                </Container>
             </ImageBackground>
         </>
     )};

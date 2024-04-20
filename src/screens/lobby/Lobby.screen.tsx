@@ -74,7 +74,7 @@ const LobbyScreen = () => {
 
                 <NavButton>
                     <LaunchButton
-                        //onPress={} 
+                        onPress={() => navigation.navigate('Game' as never)}
                         text={'Launch'}
                         disabled={!players.every(player => player.status)}
                     />

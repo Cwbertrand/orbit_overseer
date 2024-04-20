@@ -5,7 +5,7 @@ import { Return } from "./styles";
 import EditUsername from "../../components/EditUsername/EditUsername";
 import * as SplashScreen from 'expo-splash-screen';
 import {globalStyles} from "../../globals/styles";
-import {ImageBackground, Text, View} from "react-native";
+import {ImageBackground} from "react-native";
 import AccordionHistory from "../../components/AccordionHistory/AccordionHistory";
 SplashScreen.preventAutoHideAsync();
 
