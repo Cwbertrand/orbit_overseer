@@ -46,9 +46,7 @@ export const JoinModalContent = () => {
             source={require('../../../assets/img/modal/fontScreen.png')}
             style={styles.container}
             resizeMode='cover'
-        >            
-            <DisplayIdSession />
-            
+        >
             <EditUsername showButton={false} />
 
             <View style={styles.viewStyles}>
@@ -60,7 +58,6 @@ export const JoinModalContent = () => {
                     style={styles.TextInput}
                 />
             </View>
-            
             
             <View> 
                 <ThemedButton 
