@@ -5,7 +5,7 @@ import EditUsername from '../../components/EditUsername/EditUsername';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import {useNavigation} from "@react-navigation/native";
-import {useAppDispatch} from "../../app/redux/store/store";
+import {useAppDispatch, useAppSelector} from "../../app/redux/store/store";
 import {useEffect, useState} from "react";
 import {getUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
 import uuid from "react-native-uuid";
@@ -15,6 +15,7 @@ import {globalStyles} from "../../globals/styles";
 export const JoinModalContent = () => {
     const navigation = useNavigation();
     const dispatch = useAppDispatch();
+    const { playerId, playerName } = useAppSelector(state => state.game);
     const [userName, setUserName] = useState<string>('');
     const [gameIdInput, setGameIdInput] = useState<string>('');
 
@@ -33,16 +34,13 @@ export const JoinModalContent = () => {
     const handleJoinGame = () => {
         setGameIdInput(gameIdInput);
         const currentPlayer = {
-            userId: uuid.v4() as string,
-            name: userName,
-            status: false,
-            isCreator: false
+            userId: playerId as string,
+            name: playerName as string,
         }
         dispatch(setGameId(gameIdInput))
         dispatch(setPlayers([currentPlayer]));
         navigation.navigate('Lobby' as never)
     };
-    
     return (
         <ImageBackground
             source={require('../../../assets/img/modal/fontScreen.png')}

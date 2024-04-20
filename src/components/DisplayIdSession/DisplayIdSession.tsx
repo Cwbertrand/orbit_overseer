@@ -15,12 +15,12 @@ interface Props {
 }
 
 export const DisplayIdSession = () => {
-    const { player } = useAppSelector(state => state.game);
+    const { playerId } = useAppSelector(state => state.game);
     
     return (
         <View style={{ alignItems: 'center', marginTop: 10 }}>
             <CopyIdToClipboard
-                text={player as string}
+                text={playerId as string}
                 style={styles.inputStyles}
                 viewStyles={styles.viewStyles}
                 disabled
