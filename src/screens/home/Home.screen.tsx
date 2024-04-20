@@ -13,7 +13,7 @@ import {JoinModalContent} from '../../components/JoinModalContent/JoinModalConte
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import { useAppDispatch, useAppSelector } from '../../app/redux/store/store';
-import { createGame, setGameId, setPlayers, setUserId } from '../../app/redux/slice/gameReducer';
+import { createGame, setGameId, setPlayerName, setPlayers, setUserId } from '../../app/redux/slice/gameReducer';
 import uuid from "react-native-uuid";
 import {useCallback, useEffect, useState} from "react";
 
@@ -22,6 +22,7 @@ interface HomeScreenProps {}
 const HomeScreen = (props: HomeScreenProps) => {
   const navigation = useNavigation();
   const [userName, setUserName] = useState<string>('');
+  const { playerName } = useAppSelector(state => state.game);
   const [userId, setUserIds] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   
@@ -49,7 +50,7 @@ const HomeScreen = (props: HomeScreenProps) => {
     dispatch(createGame());
     const currentPlayer = {
       userId: userId as string,
-      name: userName,
+      name: playerName as string,
       status: false,
       isCreator: true
     }
@@ -57,10 +58,10 @@ const HomeScreen = (props: HomeScreenProps) => {
     navigation.navigate('Lobby' as never)
   };
 
-  const handleStoreUserName = async (newUserName: string) => {
-    await storeUserName(newUserName);
-    setUserName(newUserName);
-  };
+  // const handleStoreUserName = async (newUserName: string) => {
+  //   await storeUserName(newUserName);
+  //   setUserName(newUserName);
+  // };
   
   // Import font style
   const [fontsLoaded, fontError] = useFonts({

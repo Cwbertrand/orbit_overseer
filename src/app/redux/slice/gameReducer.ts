@@ -6,14 +6,16 @@ interface GameState{
     gameId: string | null;
     webSocket: null,
     players: Player[],
-    player: string | null;
+    playerId: string | null;
+    playerName: string | null;
 }
 
 const initialState: GameState = {
     gameId: null,
     webSocket: null,
     players: [],
-    player: null
+    playerId: null,
+    playerName: null
 }
 
 export const createGame = createAsyncThunk(
@@ -36,7 +38,7 @@ export const changePlayerStatus = createAsyncThunk(
     async (userId: string, {dispatch}) => {
         try {
             const playerStatus = await agent.PlayerReady.playerReady(userId);
-            //dispatch(setPlayers(playerStatus))
+            //dispatch(playerStatus(userId))
             console.log(playerStatus);
         } catch (error) {
             throw error;
@@ -57,10 +59,13 @@ const gameSlice = createSlice({
             state.players = action.payload;
         },
         setUserId(state, action:PayloadAction<string>) {
-            state.player = action.payload;
+            state.playerId = action.payload;
+        },
+        setPlayerName(state, action:PayloadAction<string>) {
+            state.playerName = action.payload;
         }
     }
 })
 
-export const {setGameId, setPlayers, setUserId} = gameSlice.actions;
+export const {setGameId, setPlayers, setUserId, setPlayerName} = gameSlice.actions;
 export default gameSlice.reducer;

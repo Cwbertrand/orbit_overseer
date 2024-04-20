@@ -13,11 +13,10 @@ import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSessi
 import ListUser from '../../components/ListUser/ListUser';
 import {globalStyles} from "../../globals/styles";
 import GameID from "../../components/GameID/GameID";
-import { getUserId } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 
 const LobbyScreen = () => {
     const navigation = useNavigation();
-    const { gameId, players } = useAppSelector(state => state.game);
+    const { gameId, players, playerId, playerName } = useAppSelector(state => state.game);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -32,8 +31,8 @@ const LobbyScreen = () => {
                 type: 'connect',
                 data: {
                     gameId: gameId as string,
-                    playerId: players[0].userId as string,
-                    playerName: players[0].name,
+                    playerId: playerId as string,
+                    playerName: playerName as string,
                 }
             };
             console.log(initialMessage);
@@ -60,8 +59,7 @@ const LobbyScreen = () => {
 
         }
     }, [dispatch, gameId]);
-
-
+    console.log(gameId);
     
     return (
         <LobbyWrapper>
