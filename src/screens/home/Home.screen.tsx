@@ -7,13 +7,13 @@ import {globalStyles} from "../../globals/styles";
 import {NavBar, ButtonGroup} from './styles';
 import { ThemedButton } from 'react-native-really-awesome-button';
 import { useNavigation } from '@react-navigation/native';
-import { getUserName, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
+import { getUserId, getUserName, storeUserId, storeUserName } from '../../app/logic/asyncStorageForUserName/userNameStorage';
 import EditUsername from "../../components/EditUsername/EditUsername";
 import {JoinModalContent} from '../../components/JoinModalContent/JoinModalContent';
 import { ReusableModal } from '../../components/ReusableModal/ReusableModal';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import { useAppDispatch, useAppSelector } from '../../app/redux/store/store';
-import { createGame, setGameId, setPlayers } from '../../app/redux/slice/gameReducer';
+import { createGame, setGameId, setPlayers, setUserId } from '../../app/redux/slice/gameReducer';
 import uuid from "react-native-uuid";
 import {useCallback, useEffect, useState} from "react";
 
@@ -22,6 +22,7 @@ interface HomeScreenProps {}
 const HomeScreen = (props: HomeScreenProps) => {
   const navigation = useNavigation();
   const [userName, setUserName] = useState<string>('');
+  const [userId, setUserIds] = useState<string | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
   
   // load username 
@@ -31,6 +32,14 @@ const HomeScreen = (props: HomeScreenProps) => {
     const loadUserName = async () => {
       const storedUserName = await getUserName();
       if (storedUserName) setUserName(storedUserName);
+
+      let storedUserId = await getUserId();
+      if (!storedUserId) {
+        storedUserId = uuid.v4() as string;
+        await storeUserId(storedUserId);
+      }
+      setUserIds(storedUserId);
+      dispatch(setUserId(storedUserId));
     };
     loadUserName();
   }, []);
@@ -39,7 +48,7 @@ const HomeScreen = (props: HomeScreenProps) => {
   const handleCreateGame = () => {
     dispatch(createGame());
     const currentPlayer = {
-      userId: uuid.v4() as string,
+      userId: userId as string,
       name: userName,
       status: false,
       isCreator: true

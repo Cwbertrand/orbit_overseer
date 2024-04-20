@@ -10,7 +10,7 @@ const  responseData = <T> (response: AxiosResponse<T>) => response.data;
 // A snippet for data types and their responses
 const requests = {
     get: <T> (url: string) => axios.get<T>(url).then(responseData),
-    post: <T> (url: string, data: {}) => axios.post<T>(url, data).then(responseData),
+    post: <T> (url: string) => axios.post<T>(url).then(responseData),
 
     postWithOutData: <T> (url: string) => axios.post<T>(url).then(responseData),
 
@@ -24,9 +24,13 @@ interface GameResponse {
 const CreateGame = {
     createGame: () => requests.postWithOutData<GameResponse>('/create-game'),
 }
+const PlayerReady = {
+    playerReady: (id: string) => requests.post<GameResponse>(`/ready/${id}`),
+}
 
 const agent = {
     CreateGame,
+    PlayerReady
 }
 
 export default agent;
