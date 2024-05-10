@@ -3,14 +3,11 @@ import { styles } from './styles';
 import {ImageBackground, Text, TextInput, View} from 'react-native';
 import EditUsername from '../../components/EditUsername/EditUsername';
 import { ThemedButton } from 'react-native-really-awesome-button';
-import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import {useNavigation} from "@react-navigation/native";
 import {useAppDispatch, useAppSelector} from "../../app/redux/store/store";
 import {useEffect, useState} from "react";
 import {getUserName} from "../../app/logic/asyncStorageForUserName/userNameStorage";
-import uuid from "react-native-uuid";
 import {setGameId, setPlayers} from "../../app/redux/slice/gameReducer";
-import {globalStyles} from "../../globals/styles";
 
 export const JoinModalContent = () => {
     const navigation = useNavigation();

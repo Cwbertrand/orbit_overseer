@@ -4,7 +4,6 @@ import {globalStyles} from "../../globals/styles";
 import {useNavigation} from "@react-navigation/native";
 import GameID from "../../components/GameID/GameID";
 
-
 const GameScreen = () => {
     const navigation = useNavigation();
     
