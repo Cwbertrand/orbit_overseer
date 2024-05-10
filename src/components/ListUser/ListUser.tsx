@@ -1,8 +1,7 @@
-﻿import React, { useEffect } from 'react';
+﻿import React from 'react';
 import { ListUserBloc, Item, ItemText } from "./ListUser.style";
 import {useAppSelector} from "../../app/redux/store/store";
-import SwitchInputSimple from '../SwitchInput/SwitchInputSimple';
-
+import SwitchInputReady from '../SwitchInputReady/SwitchInputReady';
 
 const ListUser = () => {
     const {players, playerName} = useAppSelector(state => state.game);
@@ -16,9 +15,11 @@ const ListUser = () => {
                 <Item key={index} >
                     <ItemText>{player.name}</ItemText>
                     {player?.name === playerName ? (
-                        <SwitchInputSimple validateSwitch={validateSwitch} disabled={player.status ? true : false} />
+                        <SwitchInputReady validateSwitch={validateSwitch} disabled={!!player.status} />
                     ) : (
-                        <ItemText style={{color:'#fff'}}>{player.status ? 'ready' : 'not ready'}</ItemText>
+                        <ItemText style={{ fontFamily: 'OuterSpace', color: player.status ? 'green' : 'red' }}>
+                            {player.status ? 'ready' : 'not ready'}
+                        </ItemText>
                     )}
                     
                 </Item>

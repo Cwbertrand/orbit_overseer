@@ -6,7 +6,6 @@ import GameID from "../../components/GameID/GameID";
 import { useAppSelector } from "../../app/redux/store/store";
 import WebSocketService from "../../app/redux/slice/WebSocketService";
 
-
 const GameScreen = () => {
     const navigation = useNavigation();
     const { gameId, players, playerId, playerName } = useAppSelector(state => state.game);
