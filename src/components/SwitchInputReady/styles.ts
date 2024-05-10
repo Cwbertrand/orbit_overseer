@@ -3,8 +3,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: 'flex-end',
     },
     button: {
         paddingHorizontal: 20,
@@ -17,7 +16,7 @@ export const styles = StyleSheet.create({
         elevation: 5
     },
     notPressed: {
-        backgroundColor: '#ccc', 
+        backgroundColor: 'gray', 
     },
     pressed: {
         backgroundColor: '#25D366',
