@@ -1,21 +1,10 @@
 const wsURL = "wss://space-operators-bb2423167918.herokuapp.com/";
 
-export type InitialMessage = {
-    type: string;
-    data: {
-        gameId: string;
-        playerId: string;
-        playerName: string;
-    };
-};
-
-// Type for the function to handle received messages
-type ReceivedMessage = (message: string) => void;
-
 class WebSocketService {
-    private socket: WebSocket | null;
-    private initialMessage: string | null;
-    private receivedMessage?:  ReceivedMessage;
+    public socket: WebSocket | null;
+    private initialMessage: any | null;
+    private receivedMessage?:  any | null;
+    private static instance: WebSocketService | null = null;
     
     constructor() {
         // Initialize socket and initialMessage
@@ -23,46 +12,55 @@ class WebSocketService {
         this.initialMessage = null;
     }
 
-    // Check if the WebSocket connection is open
-    isConnected() {
-        return this.socket && this.socket.readyState === WebSocket.OPEN;
+    // Method to get the singleton instance of the WebSocketService
+    public static getInstance(): WebSocketService {
+        if (!WebSocketService.instance) {
+            // If no instance has been created yet, create one
+            WebSocketService.instance = new WebSocketService();
+        }
+        return WebSocketService.instance;
     }
 
-    connect(initialMessage?: InitialMessage, onMessage?: ReceivedMessage) {
-        this.socket = new WebSocket(wsURL);
+    // Check if the WebSocket connection is open
+    public isConnected(): boolean {
+        return this.socket !== null && this.socket.readyState === WebSocket.OPEN;
+    }
 
-        // Convert initialMessage to JSON string and store it
-        this.initialMessage = initialMessage ? JSON.stringify(initialMessage) : null;
+    public connect(initialMessage?: any, onMessage?: (message: any) => void) {
+        if (!this.socket || this.socket.readyState === WebSocket.CLOSED) {
+            this.socket = new WebSocket(wsURL);
+            // Convert initialMessage to JSON string and store it
+            this.initialMessage = (typeof initialMessage === 'string') ? initialMessage : JSON.stringify(initialMessage);
+            // Store the function to handle received messages
+            this.receivedMessage = onMessage;
 
-        // Store the function to handle received messages
-        this.receivedMessage = onMessage;
-
-        // WebSocket event handlers
-
-        this.socket.onopen = () => {
-            console.log('WebSocket Connected');
-
-            // Send the initial message if available
-            if (this.initialMessage) {
-                if (this.socket != null) {
+            this.socket.onopen = () => {
+                console.log('WebSocket Connected');
+                // Send the initial message if available
+                if (this.initialMessage && this.socket) {
                     this.socket.send(this.initialMessage);
                     this.initialMessage = null;
                 }
-            }
-        };
+            };
+        }
 
         this.socket.onerror = (error: Event) => {
             console.error('WebSocket Error: ', error);
         };
 
         // Handle received messages
-        this.socket.onmessage = (e: MessageEvent) => {
+        this.socket.onmessage = (e: any) => {
             console.log('Receive:', e.data);
             if (e.data === "ping"){
                 return;
             }
-            if (this.receivedMessage){
-                this.receivedMessage(e.data);
+            try {
+                const parsedData = JSON.parse(e.data);
+                if (this.receivedMessage) {
+                    this.receivedMessage(parsedData);
+                }
+            } catch (error) {
+                console.error('Error parsing JSON from WebSocket message:', error);
             }
         };
 
@@ -72,12 +70,11 @@ class WebSocketService {
     }
 
     // Disconnect from WebSocket server
-    disconnect() {
+    public disconnect() {
         if (this.socket) {
             this.socket.close();
         }
     }
 }
 
-const webSocketService = new WebSocketService();
-export default webSocketService;
+export default WebSocketService;

@@ -4,7 +4,6 @@ import { Player } from "../../../models/player";
 
 interface GameState{
     gameId: string | null;
-    webSocket: null,
     players: Player[],
     playerId: string | null;
     playerName: string | null;
@@ -12,7 +11,6 @@ interface GameState{
 
 const initialState: GameState = {
     gameId: null,
-    webSocket: null,
     players: [],
     playerId: null,
     playerName: null
