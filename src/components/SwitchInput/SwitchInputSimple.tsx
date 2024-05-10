@@ -12,7 +12,6 @@ const SwitchInputSimple = ({ validateSwitch, disabled }: any) => {
     const toggleSwitch = () => {
         // Call the validation function passed as a prop
         if (validateSwitch()) {
-            console.log(playerId)
             dispatch(changePlayerStatus(playerId as string))
             setIsEnabled(previousState => !previousState);
         } else {

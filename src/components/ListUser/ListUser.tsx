@@ -6,12 +6,10 @@ import SwitchInputSimple from '../SwitchInput/SwitchInputSimple';
 
 const ListUser = () => {
     const {players, playerName} = useAppSelector(state => state.game);
-    console.log(playerName)
 
     function validateSwitch() {
         return true;
     }
-    console.log(playerName);
     return (
         <ListUserBloc>
             {players.map((player, index) => (
