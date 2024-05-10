@@ -6,28 +6,27 @@ import { useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../app/redux/store/store';
 import { useEffect} from 'react';
 import { setPlayers } from '../../app/redux/slice/gameReducer';
-import webSocketService, { InitialMessage } from '../../app/redux/slice/WebSocketService';
+import webSocketService from '../../app/redux/slice/WebSocketService';
 import { Player } from '../../models/player';
 import {ImageBackground} from 'react-native';
 import {DisplayIdSession} from "../../components/DisplayIdSession/DisplayIdSession";
 import ListUser from '../../components/ListUser/ListUser';
 import {globalStyles} from "../../globals/styles";
 import GameID from "../../components/GameID/GameID";
+import WebSocketService from '../../app/redux/slice/WebSocketService';
 
 const LobbyScreen = () => {
     const navigation = useNavigation();
     const { gameId, players, playerId, playerName } = useAppSelector(state => state.game);
     const dispatch = useAppDispatch();
 
+    // Get the singleton instance of the WebSocketService
+    const webSocketService = WebSocketService.getInstance(); 
+
     useEffect(() => {
         if (gameId) {
-            // Checking if a connection is already established, if so, no reconnection should be necessary
-            if (webSocketService.isConnected()) {
-                console.log('WebSocket is already connected.');
-                return;
-            }
             // Creating the variable of the values to send to the server through webSocket
-            const initialMessage: InitialMessage = {
+            const initialMessage = {
                 type: 'connect',
                 data: {
                     gameId: gameId as string,
@@ -35,16 +34,18 @@ const LobbyScreen = () => {
                     playerName: playerName as string,
                 }
             };
-            console.log(initialMessage);
 
             // Establishing the webSocket connection and the initialMessage sends the values to the server.
             // Then the (message) method receives the values from the server and parses it to display the data
             webSocketService.connect(initialMessage, (message) => {
-                const parsedMessage = JSON.parse(message);
-                //if(parsedMessage.data === 'ping'){return;}
-                if (parsedMessage.type === 'players') {
+                if(message.type === 'start'){
+                    navigation.navigate('Game' as never)
+                }
+
+                // Respond from the websocket connection
+                if (message.type === 'players') {
                     // Map the incoming data to the Player interface, filling in missing fields as needed
-                    const playersData: Player[] = parsedMessage.data.players.map((player: any) => ({
+                    const playersData: Player[] = message.data.players.map((player: any) => ({
                         name: player.name,
                         status: player.status,
                     }));
@@ -59,7 +60,16 @@ const LobbyScreen = () => {
 
         }
     }, [dispatch, gameId]);
-    console.log(gameId);
+
+    const handleStartGame = () => {
+        const startMessage = JSON.stringify({
+            type: 'start',
+            data: {
+                gameId: gameId as string,
+            }
+        });
+        webSocketService.socket?.send(startMessage);
+    };
     
     return (
         <LobbyWrapper>
@@ -74,7 +84,7 @@ const LobbyScreen = () => {
 
                 <NavButton>
                     <LaunchButton
-                        onPress={() => navigation.navigate('Game' as never)}
+                        onPress={handleStartGame}
                         text={'Launch'}
                         disabled={!players.every(player => player.status)}
                     />
