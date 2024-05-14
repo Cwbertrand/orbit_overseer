@@ -8,9 +8,9 @@ import WebSocketService from "../../app/redux/slice/WebSocketService";
 import { Operation } from "../../models/operation";
 import { Element } from "../../models/element";
 import OrderText from "../../components/OrderText/OrderText";
-import LifeBar from "../../components/LifeBar";
-import Rounds from "../../components/Rounds";
-import Progress from "../../components/ProgressBar";
+import LifeBar from "../../components/LifeBar/LifeBar";
+import Rounds from "../../components/Rounds/Rounds";
+import Progress from "../../components/ProgressBar/ProgressBar";
 
 const GameScreen = () => {
     const navigation = useNavigation();

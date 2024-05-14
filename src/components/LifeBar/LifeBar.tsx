@@ -1,5 +1,5 @@
 import React from "react";
-import { GreenBar, LifeBarContainer, RedBar } from "./style";
+import { GreenBar, LifeBarContainer, GreyBar } from "./style";
 import { useState, useEffect } from 'react';
 
 export interface Props {
@@ -29,7 +29,7 @@ const LifeBar: React.FC<Props> = ({ width }) => {
     return (
         <LifeBarContainer>
             <GreenBar width={width} opacity={opacity} color={color}/>
-            <RedBar width={100 - width} opacity={undefined} color={undefined}/>
+            <GreyBar width={100 - width} opacity={undefined} color={undefined}/>
         </LifeBarContainer>
     );
 };

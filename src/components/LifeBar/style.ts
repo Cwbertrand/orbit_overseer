@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Props } from "./index";
+import { Props } from "./LifeBar";
 
 export const LifeBarContainer = styled.View`
   width: 100%;
@@ -15,11 +15,11 @@ export const GreenBar = styled.View<Props>`
   background-color: ${(props) => props.color};
   z-index: 1;
   border-right-width: 3px;
-  border-right-color: yellow;
+  border-right-color: black;
   opacity: ${(props) => props.opacity};
 `;
 
-export const RedBar = styled.View<Props>`
+export const GreyBar = styled.View<Props>`
   width: ${(props) => props.width + "%"};
   height: 100%;
   background-color: gray;
