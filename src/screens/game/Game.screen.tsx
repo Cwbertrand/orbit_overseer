@@ -7,6 +7,10 @@ import { useAppSelector } from "../../app/redux/store/store";
 import WebSocketService from "../../app/redux/slice/WebSocketService";
 import { Operation } from "../../models/operation";
 import { Element } from "../../models/element";
+import OrderText from "../../components/OrderText/OrderText";
+import LifeBar from "../../components/LifeBar";
+import Rounds from "../../components/Rounds";
+import Progress from "../../components/ProgressBar";
 
 const GameScreen = () => {
     const navigation = useNavigation();
@@ -19,54 +23,47 @@ const GameScreen = () => {
 
     useEffect(() => {
         handleGame();
-    }, []); 
-    
+    }, []);
+
     const handleGame = () => {
-        if(gameId) {
-            if(webSocketService.socket){
+        if (gameId) {
+            if (webSocketService.socket) {
                 webSocketService.socket.onmessage = (e: MessageEvent) => {
-                    console.log(e.data);
-                    const dataValue = e.data.data;
-                    if (e.type === 'operation') {
-                        try {
-                            if (dataValue.role === 'operator') {
-                                console.log(dataValue);
-                                setGameElement(dataValue.element);
-                                dataValue.description
+                    try {
+                        const dataValue = JSON.parse(e.data);
+                        //console.log("Received from:", dataValue);
+                        if (dataValue.type === 'operation') {
+                            const operationData = dataValue.data;
+                            console.log("Received operation from:", operationData.role);
+                            if (operationData.role === 'operator') {
+                                setGameElement(operationData.elements);
                                 setTimeout(() => {
                                     setGameElement([]);
-                                    dataValue.description = "En attente de la prochaine opération...";
-                                }, dataValue.duration * 1000);
+                                    operationData.description = "En attente de la prochaine opération...";
+                                }, operationData.duration * 1000);
                             }
-                            if (dataValue.role === 'instructor') {
-                                console.log(dataValue);
-                                setGameElement(dataValue.element);
-                                dataValue.description
+                            if (operationData.role === 'instructor') {
+                                setGameElement(operationData.elements);
                                 setTimeout(() => {
                                     setGameElement([]);
-                                    dataValue.description = "En attente de la prochaine opération...";
-                                }, dataValue.duration * 1000);
+                                    operationData.description = "En attente de la prochaine opération...";
+                                }, operationData.duration * 1000);
                             }
-                            setOperation(dataValue);
-                        } catch (error) {
-                            throw error;
+                            setOperation(operationData);
                         }
 
-                    }
-                    if (e.type === "integrity") {
-                        try {
-                            setIntegrity(dataValue.integrity);
-                        } catch (err) {
-                            console.error("Error parsing message:", err);
+                        if(dataValue.type === "integrity") {
+                            setIntegrity(dataValue.data.integrity)
                         }
+                    } catch (error) {
+                        console.error('Error parsing JSON from WebSocket message:', error);
                     }
-                    
                 }
             }
         }
-
     }
-
+    console.log("Received gameelement from:", gameElement)
+    console.log("Received integrity from:", integrity)
     return (
         <>
             <ImageBackground
@@ -74,6 +71,14 @@ const GameScreen = () => {
                 style={globalStyles.container}
             >
                 <GameID />
+                <LifeBar width={integrity} opacity = {undefined} color = {undefined}/>
+                <Progress durationInSeconds={operation?.duration}/>
+                <Rounds rounds={operation?.turn}/>
+                <OrderText OperationText={
+                        (operation?.description === undefined || null)
+                            ? 'Attendez votre tour pour jouer' : operation?.description
+                    }
+                />
 
                 {/* Button to navigate to the Victory screen */}
                 <Button
