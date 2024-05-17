@@ -50,7 +50,6 @@ class WebSocketService {
 
         // Handle received messages
         this.socket.onmessage = (e: any) => {
-            console.log('Receive:', e.data);
             if (e.data === "ping"){
                 return;
             }
