@@ -62,10 +62,6 @@ class WebSocketService {
                 console.error('Error parsing JSON from WebSocket message:', error);
             }
         };
-
-        this.socket.onclose = (e: CloseEvent) => {
-            console.log('WebSocket Disconnected', e.reason);
-        };
     }
 
     // Disconnect from WebSocket server
